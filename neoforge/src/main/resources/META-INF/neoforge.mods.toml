@@ -1,28 +1,24 @@
-modLoader = "javafml"
-loaderVersion = "[4,)"
+modLoader = "kotlinforforge"
+loaderVersion = "[5.3,)"
 license = "MIT"
 
 [[mods]]
 modId = "${mod_id}"
-version = "${mod_version}"
+version = "${version}"
 displayName = "${mod_display_name}"
 authors = "${mod_author}"
-description = "${mod_desc}"
+description = "${mod_description}"
 logoFile="assets/turtlshell/icon.png"
 
 [[dependencies.turtlshell]]
-modId = "neoforge"
-type = "required"
-versionRange = "[21,)"
-ordering = "NONE"
-side = "BOTH"
+modId = "minecraft"
+mandatory = true
+versionRange="[${minecraft_version}]"
 
 [[dependencies.turtlshell]]
-modId = "minecraft"
-type = "required"
-versionRange = "[1.21.1,)"
-ordering = "NONE"
-side = "BOTH"
+modId = "neoforge"
+mandatory = true
+versionRange = "[21,)"
 
 [[dependencies.turtlshell]]
 modId = "yet_another_config_lib_v3"

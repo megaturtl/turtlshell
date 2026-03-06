@@ -14,10 +14,10 @@ import java.nio.file.Path;
 import static cc.turtl.turtlshell.util.format.ComponentUtils.createComponent;
 
 public class TurtlShellConstants {
-    public static final String MOD_ID = BuildConfig.MOD_ID;
-    public static final String MOD_DISPLAY_NAME = BuildConfig.MOD_DISPLAY_NAME;
-    public static final String VERSION = BuildConfig.VERSION;
-    public static final String AUTHOR = BuildConfig.AUTHOR;
+    public static final String MOD_ID = "turtlshell";
+    public static final String MOD_DISPLAY_NAME = "TurtlShell";
+    public static final String VERSION = "1.0.0";
+    public static final String AUTHOR = "megaturtl";
 
     public static final Path CONFIG_PATH = PlatformServices.getPathFinder().getConfigDir().resolve(MOD_ID);
 

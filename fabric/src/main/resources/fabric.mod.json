@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "${mod_id}",
-  "version": "${mod_version}",
+  "version": "${version}",
   "name": "${mod_display_name}",
-  "description": "${mod_desc}",
+  "description": "${mod_description}",
   "authors": [
     "${mod_author}"
   ],
@@ -29,10 +29,10 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.17.2",
-    "minecraft": "~1.21.1",
-    "java": ">=21",
-    "fabric-api": "*",
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": "${minecraft_version}",
+    "java": "${java_version}",
 
     "yet_another_config_lib_v3": ">=3.8.1"
   }

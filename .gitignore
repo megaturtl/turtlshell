@@ -31,6 +31,8 @@ bin/
 # mc
 
 run/
+runClient/
+runServer/
 logs/
 config/
 
