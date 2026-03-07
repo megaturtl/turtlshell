@@ -5,7 +5,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Player
 
 fun Player.sendEmptyLine() = this.sendSystemMessage(Component.empty())
-fun Player.sendPrefixed(message: Component) = this.sendSystemMessage(MESSAGE_PREFIX.append(message))
+fun Player.sendPrefixed(message: Component) = this.sendSystemMessage(MESSAGE_PREFIX.copy().append(message))
 fun Player.sendPrefixed(message: String) = this.sendPrefixed(componentOf(message))
 fun Player.sendSuccess(message: String) = this.sendPrefixed(componentOf(message).green())
 fun Player.sendWarning(message: String) = this.sendPrefixed(componentOf(message).yellow())

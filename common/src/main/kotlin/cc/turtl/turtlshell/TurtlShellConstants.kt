@@ -22,7 +22,7 @@ object TurtlShellConstants {
      */
     val MESSAGE_PREFIX: MutableComponent = Component.empty()
         .append(Component.literal("[").withColor(ColorLib.DARK_GRAY.rgb))
-        .append(Component.literal("🛠️").withColor(ColorLib.MINT.rgb).withStyle(ChatFormatting.BOLD))
+        .append(Component.literal("\uD83D\uDEE0").withColor(ColorLib.MINT.rgb).withStyle(ChatFormatting.BOLD))
         .append(Component.literal("] ").withColor(ColorLib.DARK_GRAY.rgb))
         .withStyle(
             Style.EMPTY.withHoverEvent(
