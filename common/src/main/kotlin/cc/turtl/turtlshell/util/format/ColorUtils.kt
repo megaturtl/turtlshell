@@ -61,7 +61,7 @@ private fun Int.green() = (this shr 8) and 0xFF
 private fun Int.blue() = this and 0xFF
 
 /**
- * Calculates a perceptual distance between two rgb integers.
+ * Weighted Euclidean approximation to get perceptual distance (low-cost variant of Redmean)
  */
 private fun colorDistance(a: Int, b: Int): Long {
     val redDist = a.red() - b.red()

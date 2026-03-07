@@ -16,7 +16,7 @@ fun formatDuration(milliseconds: Long): String =
         }
     }
 
-fun bytesSize(bytes: Long): String {
+fun formatBytes(bytes: Long): String {
     if (bytes < 0) return "N/A"
 
     val kb = 1024L
@@ -32,10 +32,9 @@ fun bytesSize(bytes: Long): String {
 }
 
 /**
- * Converts snake_case or SCREAMING_SNAKE_CASE to Title Case.
  * Example: "water_type" -> "Water Type"
  */
-fun cleanSnakeCase(snakeCase: String): String =
+fun snakeCaseToTitleCase(snakeCase: String): String =
     snakeCase
         .split("_")
         .filter { it.isNotEmpty() }
