@@ -23,9 +23,10 @@ versionRange = "[21,)"
 [[dependencies.turtlshell]]
 modId = "yet_another_config_lib_v3"
 mandatory = true
-versionRange = "[3.8.1,)"
-ordering = "NONE"
+versionRange = "[3.6.1,)"
 side = "CLIENT"
 
 [[mixins]]
-config = "turtlshell.mixins.json"
+config = "turtlshell-neoforge.mixins.json"
+[[mixins]]
+config = "turtlshell-common.mixins.json"

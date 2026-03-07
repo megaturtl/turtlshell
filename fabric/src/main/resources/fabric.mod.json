@@ -9,28 +9,36 @@
   ],
   "license": "MIT",
   "icon": "assets/turtlshell/icon.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "cc.turtl.turtlshell.TurtlShellFabric"
+      }
+    ],
     "client": [
-      "cc.turtl.turtlshell.fabric.TurtlShellFabric"
+      {
+        "adapter": "kotlin",
+        "value": "cc.turtl.turtlshell.client.TurtlShellFabricClient"
+      }
     ],
     "modmenu": [
-      "cc.turtl.turtlshell.fabric.compat.ModMenuIntegration"
+      {
+        "adapter": "kotlin",
+        "value": "cc.turtl.turtlshell.client.integration.ModMenuIntegration"
+      }
     ]
   },
   "mixins": [
-    {
-      "config": "turtlshell.mixins.json",
-      "environment": "client"
-    },
-    {
-      "config": "turtlshell.mixins.fabric.json",
-      "environment": "client"
-    }
+    "turtlshell-common.mixins.json",
+    "turtlshell-fabric.mixins.json"
   ],
+  "accessWidener": "turtlshell-common.accesswidener",
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
     "minecraft": "${minecraft_version}",
     "java": "${java_version}",
 

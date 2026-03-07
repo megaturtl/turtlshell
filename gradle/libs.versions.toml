@@ -8,7 +8,6 @@ versioning = "3.1.0"
 idea-ext = "1.1.7"
 blossom = "2.1.0"
 
-
 # Loom
 loom = "1.13-SNAPSHOT"
 architectury-plugin = "3.4-SNAPSHOT"
@@ -24,6 +23,7 @@ yet-another-config-lib-fabric = "3.8.1+1.21.1-fabric"
 neoforge = "21.1.219"
 neo-kotlin-for-forge = "5.10.0"
 yet-another-config-lib-neoforge = "3.8.1+1.21.1-neoforge"
+quilt-parsers-neoforge = "0.2.1"
 
 # Testing
 junit = "6.0.3"

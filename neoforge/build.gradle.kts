@@ -27,7 +27,7 @@ dependencies {
 
     implementation(libs.neo.kotlin.forge)
 
-    modRuntimeOnly(libs.bundles.neoforge.integrations.runtimeOnly)
+    runtimeOnly(libs.bundles.neoforge.integrations.runtimeOnly) // this has to be runtimeOnly instead of modRuntimeOnly or loom can't remap the quilt parsers correctly
 
     implementation(project(":common", configuration = "namedElements")) {
         isTransitive = false
