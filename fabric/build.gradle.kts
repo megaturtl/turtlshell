@@ -38,7 +38,6 @@ dependencies {
     }
     modImplementation(libs.fabric.loader)
     modApi(libs.fabric.api)
-    modApi(libs.bundles.fabric)
 
     modCompileOnly(libs.bundles.common.integrations.compileOnly) {
         isTransitive = false
@@ -47,8 +46,6 @@ dependencies {
     modRuntimeOnly(libs.bundles.fabric.integrations.runtimeOnly)
 
     modImplementation(libs.bundles.fabric.integrations.implementation)
-
-    include(libs.fabric.kotlin)
 }
 
 tasks {
