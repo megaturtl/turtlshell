@@ -1,15 +1,13 @@
 package cc.turtl.turtlshell
 
-import cc.turtl.turtlshell.util.format.ColorUtils
-import cc.turtl.turtlshell.util.format.ComponentUtils
+import cc.turtl.turtlshell.util.format.ColorLib
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.HoverEvent
+import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import java.nio.file.Path
-
 
 object TurtlShellConstants {
     const val MOD_ID: String = "turtlshell"
@@ -22,20 +20,16 @@ object TurtlShellConstants {
     /**
      * Prefix for chat messages (e.g. command feedback for users)
      */
-    val MESSAGE_PREFIX: Component = Component.empty()
-        .append(ComponentUtils.createComponent("[", ColorUtils.DARK_GRAY.rgb))
-        .append(
-            Component.literal("\uD83D\uDEE0")
-                .withColor(ColorUtils.MINT.rgb)
-                .withStyle(ChatFormatting.BOLD)
-        )
-        .append(ComponentUtils.createComponent("] ", ColorUtils.DARK_GRAY.rgb))
-        .withStyle { style: Style ->
-            style.withHoverEvent(
+    val MESSAGE_PREFIX: MutableComponent = Component.empty()
+        .append(Component.literal("[").withColor(ColorLib.DARK_GRAY.rgb))
+        .append(Component.literal("🛠️").withColor(ColorLib.MINT.rgb).withStyle(ChatFormatting.BOLD))
+        .append(Component.literal("] ").withColor(ColorLib.DARK_GRAY.rgb))
+        .withStyle(
+            Style.EMPTY.withHoverEvent(
                 HoverEvent(
                     HoverEvent.Action.SHOW_TEXT,
-                    ComponentUtils.createComponent(MOD_DISPLAY_NAME, ColorUtils.MINT.rgb)
+                    Component.literal(MOD_DISPLAY_NAME).withColor(ColorLib.MINT.rgb)
                 )
             )
-        }
+        )
 }
