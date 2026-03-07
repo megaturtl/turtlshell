@@ -14,14 +14,7 @@ object TurtlShellKeybinds {
         "key.turtlshell.categories.turtlshell"
     )
 
-    val MUTE_ALERTS: KeyMapping = KeyMapping(
-        "key.turtlshell.mute_alerts",
-        InputConstants.Type.KEYSYM,
-        GLFW.GLFW_KEY_M,
-        "key.turtlshell.categories.turtlshell"
-    )
-
-    val ALL: List<KeyMapping> = listOf(OPEN_CONFIG, MUTE_ALERTS)
+    val ALL: List<KeyMapping> = listOf(OPEN_CONFIG)
 
     fun rebind(keybind: KeyMapping, key: InputConstants.Key) {
         keybind.setKey(key)
