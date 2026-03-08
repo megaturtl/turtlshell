@@ -1,4 +1,5 @@
 accessWidener	v2	named
+accessible field net/minecraft/client/KeyMapping key Lcom/mojang/blaze3d/platform/InputConstants$Key;
 
 # TurtlShell makes use of the v2 protocol for access wideners. This allows for plugins
 # and mods depending on this mod to apply theses wideners to their own environments,

@@ -6,5 +6,5 @@ import java.nio.file.Path
 
 class PlatformHelperNeoForge : PlatformHelper {
     override fun getConfigDir(): Path = FMLPaths.CONFIGDIR.get()
-    override fun isModLoaded(modId: String): Boolean = ModList.get().isLoaded(modId);
+    override fun isModLoaded(modId: String): Boolean = ModList.get().isLoaded(modId)
 }

@@ -43,3 +43,7 @@ replay_*.log
 *.jfr
 *.class
 /frontend/node_modules
+
+# kotlin
+.kotlin/
+/fabric/src/generated/resources/

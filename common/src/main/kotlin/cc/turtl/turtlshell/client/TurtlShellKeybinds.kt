@@ -1,6 +1,5 @@
 package cc.turtl.turtlshell.client
 
-import cc.turtl.turtlshell.mixin.accessor.KeyMappingAccessor
 import com.mojang.blaze3d.platform.InputConstants
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
@@ -22,9 +21,7 @@ object TurtlShellKeybinds {
         Minecraft.getInstance().options.save()
     }
 
-    fun isDown(keybind: KeyMapping): Boolean {
-        return isDown((keybind as KeyMappingAccessor).`turtlshell$getKey`())
-    }
+    fun isDown(keybind: KeyMapping): Boolean = isDown(keybind.key)
 
     fun isDown(key: InputConstants.Key): Boolean {
         if (key == InputConstants.UNKNOWN) return false

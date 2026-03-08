@@ -2,7 +2,6 @@ package cc.turtl.turtlshell.client.config
 
 import cc.turtl.turtlshell.client.TurtlShellKeybinds
 import cc.turtl.turtlshell.client.config.custom.KeyController
-import cc.turtl.turtlshell.mixin.accessor.KeyMappingAccessor
 import com.mojang.blaze3d.platform.InputConstants
 import dev.isxander.yacl3.api.Option
 import dev.isxander.yacl3.api.OptionDescription
@@ -93,7 +92,7 @@ object OptionFactory {
             .description(OptionDescription.of(Component.translatable("$translationKey.description")))
             .binding(
                 keyMapping.defaultKey,
-                { (keyMapping as KeyMappingAccessor).`turtlshell$getKey`() },
+                { keyMapping.key },
                 { v -> TurtlShellKeybinds.rebind(keyMapping, v) }
             )
             .customController(::KeyController)
