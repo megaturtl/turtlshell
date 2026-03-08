@@ -34,6 +34,7 @@ run/
 runClient/
 runServer/
 logs/
+fabric/src/generated/
 
 # java
 
@@ -46,4 +47,3 @@ replay_*.log
 
 # kotlin
 .kotlin/
-/fabric/src/generated/resources/
