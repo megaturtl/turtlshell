@@ -55,7 +55,7 @@ object EventBridgeClientNeoForge {
     @SubscribeEvent
     fun onMessageReceived(e: ClientChatReceivedEvent.System) {
         if (e.isOverlay) return
-        val allowed = TurtlShellClientEvents.MESSAGE_RECEIVED(e.message)
-        if (!allowed) e.isCanceled = true
+        val cancelled = TurtlShellClientEvents.MESSAGE_RECEIVED(e.message)
+        if (cancelled) e.isCanceled = true
     }
 }
