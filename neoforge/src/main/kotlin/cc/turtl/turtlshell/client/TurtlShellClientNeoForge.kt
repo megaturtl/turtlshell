@@ -1,6 +1,6 @@
 package cc.turtl.turtlshell.client
 
-import cc.turtl.turtlshell.TurtlShellConstants
+import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.client.config.TurtlShellConfigClient
 import net.minecraft.client.gui.screens.Screen
 import net.neoforged.api.distmarker.Dist
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 
 
 @EventBusSubscriber
-@Mod(value = TurtlShellConstants.MOD_ID, dist = [Dist.CLIENT])
+@Mod(value = BuildDetails.MOD_ID, dist = [Dist.CLIENT])
 object TurtlShellClientNeoForge {
     init {
         TurtlShellClient
@@ -22,7 +22,7 @@ object TurtlShellClientNeoForge {
     }
 
     private fun registerConfigScreen() {
-        ModList.get().getModContainerById(TurtlShellConstants.MOD_ID)
+        ModList.get().getModContainerById(BuildDetails.MOD_ID)
             .ifPresent { c: ModContainer ->
                 c.registerExtensionPoint(
                     IConfigScreenFactory::class.java,

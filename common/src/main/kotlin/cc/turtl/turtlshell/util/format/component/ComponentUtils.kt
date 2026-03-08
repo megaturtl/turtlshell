@@ -1,6 +1,6 @@
 package cc.turtl.turtlshell.util.format.component
 
-import cc.turtl.turtlshell.TurtlShellConstants.MOD_DISPLAY_NAME
+import cc.turtl.turtlshell.BuildDetails.MOD_DISPLAY_NAME
 import cc.turtl.turtlshell.util.format.ColorLib
 import cc.turtl.turtlshell.util.format.getGradient
 import net.minecraft.network.chat.Component

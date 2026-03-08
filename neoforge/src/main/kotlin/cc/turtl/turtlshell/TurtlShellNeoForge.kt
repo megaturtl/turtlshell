@@ -6,7 +6,7 @@ import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.event.RegisterCommandsEvent
 
 @EventBusSubscriber
-@Mod(TurtlShellConstants.MOD_ID)
+@Mod(BuildDetails.MOD_ID)
 object TurtlShellNeoForge {
     init {
         TurtlShell

@@ -15,7 +15,7 @@ import net.minecraft.commands.CommandSourceStack
 import net.minecraft.network.chat.Component
 
 object TurtlShellCommands {
-    private val rootAliases: List<String> = listOf(TurtlShellConstants.MOD_ID, "ts")
+    private val rootAliases: List<String> = listOf(BuildDetails.MOD_ID, "ts")
 
     private val commands: List<TurtlShellCommand> = listOf(
         InfoCommand
@@ -42,7 +42,7 @@ object TurtlShellCommands {
         val message = Component.empty()
             .append(NEW_LINE)
             .append(MOD_PREFIX)
-            .append(componentOf("${TurtlShellConstants.MOD_DISPLAY_NAME} Commands").withColor(ColorLib.MINT.rgb))
+            .append(componentOf("${BuildDetails.MOD_DISPLAY_NAME} Commands").withColor(ColorLib.MINT.rgb))
 
         commands.forEach {
             message.append(NEW_LINE)

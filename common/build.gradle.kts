@@ -50,23 +50,10 @@ sourceSets {
     main {
         blossom {
             kotlinSources {
-                fun generateLicenseHeader() : String {
-                    val builder = StringBuilder()
-                    builder.append("/*\n")
-                    rootProject.file("HEADER").forEachLine {
-                        if(it.isEmpty()) {
-                            builder.append(" *").append("\n")
-                        } else {
-                            builder.append(" * ").append(it).append("\n")
-                        }
-                    }
-
-                    return builder.append(" */").append("\n").toString()
-                }
-
-                property("license", generateLicenseHeader())
-                property("modid", "turtlshell")
-                property("version", project.version())
+                property("mod_id", project.property("mod_id").toString())
+                property("mod_display_name", project.property("mod_display_name").toString())
+                property("mod_author", project.property("mod_author").toString())
+                property("mod_version", project.version())
                 property("isSnapshot", if(rootProject.isSnapshot()) "true" else "false")
                 property("gitCommit", versioning.info.commit)
                 property("branch", versioning.info.branch)

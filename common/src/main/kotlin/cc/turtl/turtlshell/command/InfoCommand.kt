@@ -1,7 +1,7 @@
 package cc.turtl.turtlshell.command
 
-import cc.turtl.turtlshell.TurtlShellConstants
 import cc.turtl.turtlshell.api.TurtlShellCommand
+import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.util.format.ColorLib
 import cc.turtl.turtlshell.util.format.component.INDENT
 import cc.turtl.turtlshell.util.format.component.MOD_PREFIX
@@ -22,17 +22,27 @@ object InfoCommand : TurtlShellCommand {
             val message = Component.empty()
                 .append(NEW_LINE)
                 .append(MOD_PREFIX)
-                .append(componentOf("${TurtlShellConstants.MOD_DISPLAY_NAME} Info").withColor(ColorLib.MINT.rgb))
+                .append(componentOf("${BuildDetails.MOD_DISPLAY_NAME} Info").withColor(ColorLib.MINT.rgb))
 
             message.append(NEW_LINE)
                 .append(MOD_PREFIX)
                 .append(INDENT)
-                .append("Version: ${TurtlShellConstants.VERSION}")
+                .append("Author: ${BuildDetails.MOD_AUTHOR}")
 
             message.append(NEW_LINE)
                 .append(MOD_PREFIX)
                 .append(INDENT)
-                .append("Author: ${TurtlShellConstants.AUTHOR}")
+                .append("Version: ${BuildDetails.MOD_VERSION}")
+
+            message.append(NEW_LINE)
+                .append(MOD_PREFIX)
+                .append(INDENT)
+                .append("Git Commit: ${BuildDetails.smallCommitHash()}")
+
+            message.append(NEW_LINE)
+                .append(MOD_PREFIX)
+                .append(INDENT)
+                .append("Branch: ${BuildDetails.BRANCH}")
 
             context.source.sendSystemMessage(message)
 
