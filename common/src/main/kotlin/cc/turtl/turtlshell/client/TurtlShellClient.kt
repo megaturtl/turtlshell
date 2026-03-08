@@ -4,6 +4,6 @@ import cc.turtl.turtlshell.client.config.TurtlShellConfigClient
 
 object TurtlShellClient {
     init {
-        TurtlShellConfigClient.init();
+        TurtlShellConfigClient.init()
     }
 }

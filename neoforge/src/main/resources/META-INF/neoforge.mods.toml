@@ -8,12 +8,12 @@ version = "${version}"
 displayName = "${mod_display_name}"
 authors = "${mod_author}"
 description = "${mod_description}"
-logoFile="assets/turtlshell/icon.png"
+logoFile = "assets/turtlshell/icon.png"
 
 [[dependencies.turtlshell]]
 modId = "minecraft"
 mandatory = true
-versionRange="[${minecraft_version}]"
+versionRange = "[${minecraft_version}]"
 
 [[dependencies.turtlshell]]
 modId = "neoforge"

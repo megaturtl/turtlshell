@@ -1,15 +1,15 @@
 package cc.turtl.turtlshell.client
 
+import net.minecraft.client.multiplayer.ClientLevel
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
+import net.neoforged.neoforge.client.event.ClientChatEvent
 import net.neoforged.neoforge.client.event.ClientChatReceivedEvent
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent
 import net.neoforged.neoforge.client.event.ClientTickEvent
 import net.neoforged.neoforge.event.GameShuttingDownEvent
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent
 import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent
-import net.minecraft.client.multiplayer.ClientLevel
-import net.neoforged.neoforge.client.event.ClientChatEvent
 
 @EventBusSubscriber
 object EventBridgeClientNeoForge {

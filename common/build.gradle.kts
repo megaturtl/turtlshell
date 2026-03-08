@@ -1,4 +1,3 @@
-
 import utilities.isSnapshot
 import utilities.version
 import java.time.OffsetDateTime
@@ -54,11 +53,14 @@ sourceSets {
                 property("mod_display_name", project.property("mod_display_name").toString())
                 property("mod_author", project.property("mod_author").toString())
                 property("mod_version", project.version())
-                property("isSnapshot", if(rootProject.isSnapshot()) "true" else "false")
+                property("isSnapshot", if (rootProject.isSnapshot()) "true" else "false")
                 property("gitCommit", versioning.info.commit)
                 property("branch", versioning.info.branch)
                 System.getProperty("buildNumber")?.let { property("buildNumber", it) }
-                property("timestamp", OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss")) + " UTC")
+                property("timestamp",
+                    OffsetDateTime.now(ZoneOffset.UTC)
+                        .format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss")) + " UTC"
+                )
             }
         }
     }

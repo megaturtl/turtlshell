@@ -1,7 +1,7 @@
 package cc.turtl.turtlshell.command
 
-import cc.turtl.turtlshell.api.TurtlShellCommand
 import cc.turtl.turtlshell.BuildDetails
+import cc.turtl.turtlshell.api.TurtlShellCommand
 import cc.turtl.turtlshell.util.format.ColorLib
 import cc.turtl.turtlshell.util.format.component.INDENT
 import cc.turtl.turtlshell.util.format.component.MOD_PREFIX

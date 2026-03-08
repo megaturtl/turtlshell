@@ -13,8 +13,8 @@ fun Project.isSnapshot(): Boolean {
 fun Project.writeVersion(type: VersionType = VersionType.FULL): String {
     val version = "${rootProject.property("mod_version")}+${rootProject.property("mc_version")}"
     return when (type) {
-        VersionType.PUBLISHING -> if(this.isSnapshot()) "$version-SNAPSHOT" else version
-        VersionType.FULL -> if(this.isSnapshot()) rootProject.version.toString() else version
+        VersionType.PUBLISHING -> if (this.isSnapshot()) "$version-SNAPSHOT" else version
+        VersionType.FULL -> if (this.isSnapshot()) rootProject.version.toString() else version
     }
 }
 

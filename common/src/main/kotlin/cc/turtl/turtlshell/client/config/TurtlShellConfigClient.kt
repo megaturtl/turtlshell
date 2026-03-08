@@ -15,7 +15,6 @@ import dev.isxander.yacl3.gui.YACLScreen
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
-import kotlin.jvm.java
 
 class TurtlShellConfigClient {
 

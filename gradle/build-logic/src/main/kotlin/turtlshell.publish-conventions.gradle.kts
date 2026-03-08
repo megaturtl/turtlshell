@@ -1,5 +1,4 @@
 import utilities.VersionType
-import utilities.isSnapshot
 import utilities.writeVersion
 
 plugins {

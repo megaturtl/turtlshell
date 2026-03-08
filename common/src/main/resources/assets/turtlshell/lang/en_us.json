@@ -1,8 +1,8 @@
 {
-    "turtlshell.config.title": "TurtlShell Config",
-    "turtlshell.config.category.general": "General",
-    "turtlshell.config.general.mod_disabled": "Disable Mod",
-    "turtlshell.config.general.mod_disabled.description": "Completely disable all TurtlShell features",
-    "turtlshell.config.general.open_config_keybind": "Open Config Keybind",
-    "turtlshell.config.general.open_config_keybind.description": "Default Key: ; (Semi Colon)"
+  "turtlshell.config.title": "TurtlShell Config",
+  "turtlshell.config.category.general": "General",
+  "turtlshell.config.general.mod_disabled": "Disable Mod",
+  "turtlshell.config.general.mod_disabled.description": "Completely disable all TurtlShell features",
+  "turtlshell.config.general.open_config_keybind": "Open Config Keybind",
+  "turtlshell.config.general.open_config_keybind.description": "Default Key: ; (Semi Colon)"
 }
