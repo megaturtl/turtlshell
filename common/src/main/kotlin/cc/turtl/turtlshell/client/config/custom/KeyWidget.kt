@@ -18,7 +18,7 @@ class KeyWidget(
     private var listening = false
 
     override fun getValueText(): Component =
-        if (listening) Component.literal("> Press a key <")
+        if (listening) Component.translatable("turtlshell.keybind.press_key_prompt")
         else control.option().pendingValue().displayName
 
     override fun render(graphics: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {

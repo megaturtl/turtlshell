@@ -58,8 +58,8 @@ class HoldToConfirmButton private constructor(
         private var name: Component? = null
         private var description: OptionDescription = OptionDescription.EMPTY
         private var action: BiConsumer<YACLScreen, HoldToConfirmButton>? = null
-        private var buttonText: Component = Component.literal("Hold to Confirm")
-        private var holdingText: Component = Component.literal("Release to Cancel")
+        private var buttonText: Component = Component.translatable("turtlshell.button.hold_to_confirm")
+        private var holdingText: Component = Component.translatable("turtlshell.button.release_to_cancel")
         private var holdTimeTicks: Int = 30
 
         fun name(name: Component) = apply { this.name = name }
