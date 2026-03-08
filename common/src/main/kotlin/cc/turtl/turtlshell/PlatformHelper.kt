@@ -8,6 +8,7 @@ import java.util.*
  */
 interface PlatformHelper {
     fun getConfigDir(): Path
+    fun isModLoaded(modId: String): Boolean
 }
 
 object Platform {
@@ -18,4 +19,5 @@ object Platform {
     }
 
     fun getConfigDir(): Path = helper.getConfigDir()
+    fun isModLoaded(modId: String): Boolean = helper.isModLoaded(modId)
 }

@@ -10,36 +10,36 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 object EventBridgeClientFabric {
     fun register() {
         ClientTickEvents.END_CLIENT_TICK.register {
-            TurtlShellClientEvents.TICK_POST.emit(Unit)
+            TurtlShellClientEvents.TICK_POST(Unit)
         }
 
         ClientEntityEvents.ENTITY_LOAD.register { entity, _ ->
-            TurtlShellClientEvents.ENTITY_LOAD.emit(entity)
+            TurtlShellClientEvents.ENTITY_LOAD(entity)
         }
 
         ClientEntityEvents.ENTITY_UNLOAD.register { entity, _ ->
-            TurtlShellClientEvents.ENTITY_UNLOAD.emit(entity)
+            TurtlShellClientEvents.ENTITY_UNLOAD(entity)
         }
 
         ClientPlayConnectionEvents.JOIN.register { _, _, _ ->
-            TurtlShellClientEvents.LEVEL_CONNECTED.emit(Unit)
+            TurtlShellClientEvents.LEVEL_CONNECTED(Unit)
         }
 
         ClientPlayConnectionEvents.DISCONNECT.register { _, _ ->
-            TurtlShellClientEvents.LEVEL_DISCONNECTED.emit(Unit)
+            TurtlShellClientEvents.LEVEL_DISCONNECTED(Unit)
         }
 
         ClientLifecycleEvents.CLIENT_STOPPING.register {
-            TurtlShellClientEvents.GAME_STOPPING.emit(Unit)
+            TurtlShellClientEvents.GAME_STOPPING(Unit)
         }
 
         ClientSendMessageEvents.COMMAND.register { command ->
-            TurtlShellClientEvents.COMMAND_SENT.emit(command)
+            TurtlShellClientEvents.COMMAND_SENT(command)
         }
 
         ClientReceiveMessageEvents.ALLOW_GAME.register { message, overlay ->
             if (overlay) return@register true
-            TurtlShellClientEvents.MESSAGE_RECEIVED.emit(message)
+            !TurtlShellClientEvents.MESSAGE_RECEIVED(message)
         }
     }
 }
