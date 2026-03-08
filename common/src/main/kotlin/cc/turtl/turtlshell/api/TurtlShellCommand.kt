@@ -1,6 +1,7 @@
 package cc.turtl.turtlshell.api
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import net.minecraft.commands.CommandSourceStack
 
 interface TurtlShellCommand {
     /**
@@ -17,5 +18,5 @@ interface TurtlShellCommand {
      * Build and return the command structure.
      * Use Commands.literal(getName()) and attach logic.
      */
-    fun <S> build(): LiteralArgumentBuilder<S>
+    fun build(): LiteralArgumentBuilder<CommandSourceStack>
 }

@@ -1,5 +1,6 @@
 package cc.turtl.turtlshell.util.format.component
 
+import cc.turtl.turtlshell.TurtlShellConstants.MOD_DISPLAY_NAME
 import cc.turtl.turtlshell.util.format.ColorLib
 import cc.turtl.turtlshell.util.format.getGradient
 import net.minecraft.network.chat.Component
@@ -7,6 +8,15 @@ import net.minecraft.network.chat.MutableComponent
 
 val UNKNOWN: Component = Component.literal("???").withColor(ColorLib.DARK_GRAY.rgb)
 val SPACE: Component = Component.literal(" ")
+val INDENT: Component = Component.literal("  ")
+val NEW_LINE: Component = Component.literal("\n")
+
+val MOD_PREFIX: Component = Component.empty()
+    .append(componentOf("[").darkGray())
+    .append(componentOf("\uD83D\uDEE0").colored(ColorLib.MINT.rgb).bold())
+    .append(componentOf("]").darkGray())
+    .hoverText(componentOf(MOD_DISPLAY_NAME).colored(ColorLib.MINT.rgb))
+    .append(SPACE)
 
 /**
  * Converts any value to a [Component] using toString(). Preserves [Component]s if passed.
