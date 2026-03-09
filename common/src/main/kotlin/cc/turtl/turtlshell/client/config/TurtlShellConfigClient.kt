@@ -52,7 +52,7 @@ class TurtlShellConfigClient {
 
         fun createScreen(parent: Screen?): Screen =
             YetAnotherConfigLib.createBuilder()
-                .title(Component.translatable("turtlshell.config.title"))
+                .title(Component.translatable("ts.config.title"))
                 .category(get().general.buildCategory())
                 .save(::save)
                 .build()

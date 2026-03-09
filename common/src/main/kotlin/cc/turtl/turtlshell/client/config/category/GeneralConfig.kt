@@ -12,17 +12,17 @@ class GeneralConfig {
     var modDisabled: Boolean = DEFAULT_MOD_DISABLED
 
     fun buildCategory(): ConfigCategory = ConfigCategory.createBuilder()
-        .name(Component.translatable("turtlshell.config.category.general"))
+        .name(Component.translatable("ts.config.category.general"))
         .option(
             OptionFactory.toggleOnOff(
-                "turtlshell.config.general.mod_disabled",
+                "ts.config.general.mod_disabled",
                 DEFAULT_MOD_DISABLED,
                 { modDisabled },
                 { modDisabled = it })
         )
         .option(
             OptionFactory.keyMappingPicker(
-                "turtlshell.config.general.open_config_keybind",
+                "ts.config.general.open_config_keybind",
                 TurtlShellKeybinds.OPEN_CONFIG
             )
         )

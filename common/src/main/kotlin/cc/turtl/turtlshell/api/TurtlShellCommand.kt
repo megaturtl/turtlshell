@@ -2,6 +2,7 @@ package cc.turtl.turtlshell.api
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.commands.CommandSourceStack
+import net.minecraft.network.chat.Component
 
 interface TurtlShellCommand {
     /**
@@ -10,9 +11,9 @@ interface TurtlShellCommand {
     val name: String
 
     /**
-     * Short description for help text
+     * Translatable description key for the command
      */
-    val description: String get() = ""
+    val description: Component get() = Component.empty()
 
     /**
      * Build and return the command structure.

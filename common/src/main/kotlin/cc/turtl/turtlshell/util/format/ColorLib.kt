@@ -33,4 +33,14 @@ object ColorLib {
     val LAVENDER: Color = Color(0xDEDEFC)
     val MINT: Color = Color(0x98FF98)
     val TEAL: Color = Color(0x008080)
+
+    class Gradient(vararg val colors: Color) {
+        fun rgb(): IntArray = colors.map { it.rgb }.toIntArray()
+    }
+
+    object Gradients {
+        val POSITIVE = Gradient(RED, YELLOW, GREEN)
+        val NEGATIVE = Gradient(GREEN, YELLOW, RED)
+        val RAINBOW = Gradient(RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK)
+    }
 }

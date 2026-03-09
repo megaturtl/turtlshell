@@ -78,12 +78,12 @@ internal class ColorUtilsTest {
 
             @Test
             fun `returns white when no colors provided`() {
-                assertEquals(0xFFFFFF, getGradient(0.5f))
+                assertEquals(0xFFFFFF, getRatioColor(0.5f))
             }
 
             @Test
             fun `returns sole color for any ratio`() {
-                assertEquals(0xABCDEF, getGradient(0.3f, 0xABCDEF))
+                assertEquals(0xABCDEF, getRatioColor(0.3f, 0xABCDEF))
             }
         }
 
@@ -92,22 +92,22 @@ internal class ColorUtilsTest {
 
             @Test
             fun `returns first color at ratio zero`() {
-                assertEquals(0xFF0000, getGradient(0f, 0xFF0000, 0x0000FF))
+                assertEquals(0xFF0000, getRatioColor(0f, 0xFF0000, 0x0000FF))
             }
 
             @Test
             fun `returns last color at ratio one`() {
-                assertEquals(0x0000FF, getGradient(1f, 0xFF0000, 0x0000FF))
+                assertEquals(0x0000FF, getRatioColor(1f, 0xFF0000, 0x0000FF))
             }
 
             @Test
             fun `clamps ratio below zero to first color`() {
-                assertEquals(0xFF0000, getGradient(-0.1f, 0xFF0000, 0x00FF00, 0x0000FF))
+                assertEquals(0xFF0000, getRatioColor(-0.1f, 0xFF0000, 0x00FF00, 0x0000FF))
             }
 
             @Test
             fun `clamps ratio above one to last color`() {
-                assertEquals(0x0000FF, getGradient(1.1f, 0xFF0000, 0x00FF00, 0x0000FF))
+                assertEquals(0x0000FF, getRatioColor(1.1f, 0xFF0000, 0x00FF00, 0x0000FF))
             }
         }
 
@@ -116,18 +116,18 @@ internal class ColorUtilsTest {
 
             @Test
             fun `returns middle stop exactly at segment boundary`() {
-                assertEquals(0x00FF00, getGradient(0.5f, 0xFF0000, 0x00FF00, 0x0000FF))
+                assertEquals(0x00FF00, getRatioColor(0.5f, 0xFF0000, 0x00FF00, 0x0000FF))
             }
 
             @Test
             fun `interpolates first segment midpoint`() {
                 // lerp truncates: (0xFF + 0x00) * 0.5 = 127 = 0x7F, not 0x80
-                assertEquals(0x7F7F00, getGradient(0.25f, 0xFF0000, 0x00FF00, 0x0000FF))
+                assertEquals(0x7F7F00, getRatioColor(0.25f, 0xFF0000, 0x00FF00, 0x0000FF))
             }
 
             @Test
             fun `interpolates second segment midpoint`() {
-                assertEquals(0x007F7F, getGradient(0.75f, 0xFF0000, 0x00FF00, 0x0000FF))
+                assertEquals(0x007F7F, getRatioColor(0.75f, 0xFF0000, 0x00FF00, 0x0000FF))
             }
         }
     }

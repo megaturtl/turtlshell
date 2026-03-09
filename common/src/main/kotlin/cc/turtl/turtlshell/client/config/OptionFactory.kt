@@ -19,7 +19,7 @@ object OptionFactory {
         getter: Supplier<Boolean>, setter: Consumer<Boolean>
     ): Option<Boolean> = Option.createBuilder<Boolean>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller(TickBoxControllerBuilder::create)
         .build()
@@ -29,7 +29,7 @@ object OptionFactory {
         getter: Supplier<Boolean>, setter: Consumer<Boolean>
     ): Option<Boolean> = Option.createBuilder<Boolean>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller { opt -> BooleanControllerBuilder.create(opt).coloured(true) }
         .build()
@@ -40,7 +40,7 @@ object OptionFactory {
         min: Float, max: Float, step: Float
     ): Option<Float> = Option.createBuilder<Float>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller { opt -> FloatSliderControllerBuilder.create(opt).range(min, max).step(step) }
         .build()
@@ -51,7 +51,7 @@ object OptionFactory {
         min: Int, max: Int, step: Int
     ): Option<Int> = Option.createBuilder<Int>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller { opt -> IntegerSliderControllerBuilder.create(opt).range(min, max).step(step) }
         .build()
@@ -61,7 +61,7 @@ object OptionFactory {
         getter: Supplier<T>, setter: Consumer<T>, enumClass: Class<T>
     ): Option<T> = Option.createBuilder<T>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller { opt -> EnumControllerBuilder.create(opt).enumClass(enumClass) }
         .build()
@@ -71,7 +71,7 @@ object OptionFactory {
         getter: Supplier<String>, setter: Consumer<String>
     ): Option<String> = Option.createBuilder<String>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller(StringControllerBuilder::create)
         .build()
@@ -81,7 +81,7 @@ object OptionFactory {
         getter: Supplier<Color>, setter: Consumer<Color>
     ): Option<Color> = Option.createBuilder<Color>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .controller(ColorControllerBuilder::create)
         .build()
@@ -89,7 +89,7 @@ object OptionFactory {
     fun keyMappingPicker(translationKey: String, keyMapping: KeyMapping): Option<InputConstants.Key> =
         Option.createBuilder<InputConstants.Key>()
             .name(Component.translatable(translationKey))
-            .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+            .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
             .binding(
                 keyMapping.defaultKey,
                 { keyMapping.key },
@@ -103,7 +103,7 @@ object OptionFactory {
         getter: Supplier<InputConstants.Key>, setter: Consumer<InputConstants.Key>
     ): Option<InputConstants.Key> = Option.createBuilder<InputConstants.Key>()
         .name(Component.translatable(translationKey))
-        .description(OptionDescription.of(Component.translatable("$translationKey.description")))
+        .description(OptionDescription.of(Component.translatable("$translationKey.desc")))
         .binding(defaultValue, getter, setter)
         .customController(::KeyController)
         .build()

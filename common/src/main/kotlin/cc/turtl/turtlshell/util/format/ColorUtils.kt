@@ -25,7 +25,7 @@ fun getClosestLegacy(rgb: Int): ChatFormatting {
  * @param colors The RGB color stops defining the gradient
  * @return The interpolated RGB int
  */
-fun getGradient(ratio: Float, vararg colors: Int): Int {
+fun getRatioColor(ratio: Float, vararg colors: Int): Int {
     if (colors.isEmpty()) return 0xFFFFFF
     if (colors.size == 1) return colors[0]
 

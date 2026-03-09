@@ -1,11 +1,25 @@
 {
-  "turtlshell.config.title": "TurtlShell Config",
-  "turtlshell.config.category.general": "General",
-  "turtlshell.config.general.mod_disabled": "Disable Mod",
-  "turtlshell.config.general.mod_disabled.description": "Completely disable all TurtlShell features",
-  "turtlshell.config.general.open_config_keybind": "Open Config Keybind",
-  "turtlshell.config.general.open_config_keybind.description": "Default Key: ; (Semi Colon)",
-  "turtlshell.config.keybind.press_key_prompt": "> Press a key <",
-  "turtlshell.button.hold": "Hold to Confirm",
-  "turtlshell.button.release_to_cancel": "Release to Cancel"
+  "ts.config.title": "TurtlShell Config",
+  "ts.config.category.general": "General",
+  "ts.config.general.mod_disabled": "Disable Mod",
+  "ts.config.general.mod_disabled.desc": "Completely disable all TurtlShell features",
+  "ts.config.general.open_config_keybind": "Open Config Keybind",
+  "ts.config.general.open_config_keybind.desc": "Default Key: ; (Semi Colon)",
+  "ts.config.keybind.press_key_prompt": "> Press a key <",
+
+
+  "ts.button.hold": "Hold to Confirm",
+  "ts.button.release_to_cancel": "Release to Cancel",
+
+
+  "ts.command.help.title": "TurtlShell Commands",
+
+  "ts.command.info.desc": "Displays mod info",
+  "ts.command.info.title": "TurtlShell Info",
+  "ts.command.info.author.label": "Author",
+  "ts.command.info.version.label": "Version",
+  "ts.command.info.commit.label": "Commit",
+  "ts.command.info.branch.label": "Branch",
+
+  "ts.key.open_config": "Open Config"
 }

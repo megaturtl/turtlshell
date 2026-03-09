@@ -2,49 +2,27 @@ package cc.turtl.turtlshell.command
 
 import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.TurtlShellCommand
-import cc.turtl.turtlshell.util.format.ColorLib
-import cc.turtl.turtlshell.util.format.component.INDENT
-import cc.turtl.turtlshell.util.format.component.MOD_PREFIX
-import cc.turtl.turtlshell.util.format.component.NEW_LINE
-import cc.turtl.turtlshell.util.format.component.componentOf
+import cc.turtl.turtlshell.util.format.component.MessagePatterns
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.MutableComponent
 
 object InfoCommand : TurtlShellCommand {
     override val name = "info"
-    override val description = "Display mod info"
+    override val description: MutableComponent = Component.translatable("ts.command.info.desc")
 
     override fun build(): LiteralArgumentBuilder<CommandSourceStack> =
         LiteralArgumentBuilder.literal<CommandSourceStack>(name).executes { context ->
 
-            val message = Component.empty()
-                .append(NEW_LINE)
-                .append(MOD_PREFIX)
-                .append(componentOf("${BuildDetails.MOD_DISPLAY_NAME} Info").withColor(ColorLib.MINT.rgb))
-
-            message.append(NEW_LINE)
-                .append(MOD_PREFIX)
-                .append(INDENT)
-                .append("Author: ${BuildDetails.MOD_AUTHOR}")
-
-            message.append(NEW_LINE)
-                .append(MOD_PREFIX)
-                .append(INDENT)
-                .append("Version: ${BuildDetails.MOD_VERSION}")
-
-            message.append(NEW_LINE)
-                .append(MOD_PREFIX)
-                .append(INDENT)
-                .append("Git Commit: ${BuildDetails.smallCommitHash()}")
-
-            message.append(NEW_LINE)
-                .append(MOD_PREFIX)
-                .append(INDENT)
-                .append("Branch: ${BuildDetails.BRANCH}")
-
-            context.source.sendSystemMessage(message)
+            context.source.sendSystemMessage(
+                MessagePatterns.title("ts.command.info.title")
+                    .append(MessagePatterns.fieldLine("ts.command.info.author.label", BuildDetails.MOD_AUTHOR))
+                    .append(MessagePatterns.fieldLine("ts.command.info.version.label", BuildDetails.MOD_VERSION))
+                    .append(MessagePatterns.fieldLine("ts.command.info.author.label", BuildDetails.smallCommitHash()))
+                    .append(MessagePatterns.fieldLine("ts.command.info.branch.label", BuildDetails.BRANCH))
+            )
 
             Command.SINGLE_SUCCESS
         }

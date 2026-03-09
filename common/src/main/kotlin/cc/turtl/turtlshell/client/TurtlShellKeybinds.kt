@@ -1,5 +1,6 @@
 package cc.turtl.turtlshell.client
 
+import cc.turtl.turtlshell.BuildDetails
 import com.mojang.blaze3d.platform.InputConstants
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
@@ -7,10 +8,10 @@ import org.lwjgl.glfw.GLFW
 
 object TurtlShellKeybinds {
     val OPEN_CONFIG: KeyMapping = KeyMapping(
-        "key.turtlshell.open_config",
+        "ts.key.open_config",
         InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_SEMICOLON,
-        "key.turtlshell.categories.turtlshell"
+        BuildDetails.MOD_DISPLAY_NAME
     )
 
     val ALL: List<KeyMapping> = listOf(OPEN_CONFIG)
