@@ -12,7 +12,7 @@
   "ts.button.release_to_cancel": "Release to Cancel",
 
 
-  "ts.command.help.title": "TurtlShell Commands",
+  "ts.command.help.title": "Help",
 
   "ts.command.info.desc": "Displays mod info",
   "ts.command.info.title": "TurtlShell Info",

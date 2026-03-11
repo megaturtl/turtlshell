@@ -14,13 +14,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "cc.turtl.turtlshell.TurtlShellFabric"
+        "value": "cc.turtl.turtlshell.core.TurtlShellFabric"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "cc.turtl.turtlshell.client.TurtlShellClientFabric"
+        "value": "cc.turtl.turtlshell.client.TurtlShellFabricClient"
       }
     ],
     "modmenu": [

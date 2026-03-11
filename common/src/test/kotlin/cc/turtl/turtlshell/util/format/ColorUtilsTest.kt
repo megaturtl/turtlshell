@@ -1,5 +1,8 @@
 package cc.turtl.turtlshell.util.format
 
+import cc.turtl.turtlshell.api.core.util.getClosestLegacy
+import cc.turtl.turtlshell.api.core.util.getRatioColor
+import cc.turtl.turtlshell.api.core.util.toArgb
 import net.minecraft.ChatFormatting
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested

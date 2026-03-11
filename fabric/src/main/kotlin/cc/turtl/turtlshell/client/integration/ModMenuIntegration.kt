@@ -1,6 +1,6 @@
 package cc.turtl.turtlshell.client.integration
 
-import cc.turtl.turtlshell.client.config.TurtlShellConfigClient
+import cc.turtl.turtlshell.example.client.config.TurtlShellConfigClient
 import com.terraformersmc.modmenu.api.ConfigScreenFactory
 import com.terraformersmc.modmenu.api.ModMenuApi
 
