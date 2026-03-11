@@ -8,7 +8,9 @@ import java.util.*
  */
 interface PlatformHelper {
     fun getConfigDir(): Path
+    fun findPath(modId: String, path: String): Path?
     fun isModLoaded(modId: String): Boolean
+    fun getEnvironmentType(): EnvironmentType
 }
 
 object Platform {
@@ -18,6 +20,15 @@ object Platform {
             .orElseThrow { IllegalStateException("No PlatformHelper found - did you register it?") }
     }
 
+    val isClient by lazy { getEnvironmentType() == EnvironmentType.CLIENT }
+    val isServer get() = !isClient
+
     fun getConfigDir(): Path = helper.getConfigDir()
     fun isModLoaded(modId: String): Boolean = helper.isModLoaded(modId)
+    fun getEnvironmentType(): EnvironmentType = helper.getEnvironmentType()
+    fun findPath(modId: String, path: String): Path? = helper.findPath(modId, path)
+}
+
+enum class EnvironmentType {
+    CLIENT, SERVER
 }
