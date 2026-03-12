@@ -1,4 +1,5 @@
 import utilities.VersionType
+import utilities.isSnapshot
 import utilities.writeVersion
 
 plugins {
@@ -16,27 +17,19 @@ java {
 
 publishing {
     repositories {
-        maven("https://maven.turl.cc/releases") {
-            name = "Turtl-Public"
+        maven {
+            val snapshot = project.isSnapshot()
+
+            val releases = uri("https://maven.turtl.cc/releases")
+            val snapshots = uri("https://maven.turtl.cc/snapshots")
+
+            url = if (snapshot) snapshots else releases
+            name = "turtl"
             credentials {
                 username = System.getenv("MAVEN_USER")
                 password = System.getenv("MAVEN_PASSWORD")
             }
         }
-
-//        maven {
-//            val snapshot = project.isSnapshot()
-//
-//            val releases = uri("https://artefacts.turtl.cc/releases")
-//            val snapshots = uri("https://artefacts.turtl.cc/snapshots")
-//
-//            url = if (snapshot) snapshots else releases
-//            name = "Reposilite.${if (snapshot) "Snapshots" else "Releases"}"
-//            credentials {
-//                username = System.getenv("REPOSILITE_USERNAME")
-//                password = System.getenv("REPOSILITE_PASSWORD")
-//            }
-//        }
     }
 
     publications {

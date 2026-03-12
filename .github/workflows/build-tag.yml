@@ -61,3 +61,9 @@ jobs:
             !**/*sources*
             !**/*javadoc*
           if-no-files-found: error
+
+      - name: Publish to maven.turtl.cc
+        run: ./gradlew publish -Pmod_version="${{ steps.version.outputs.version }}"
+        env:
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
