@@ -3,7 +3,9 @@ package cc.turtl.turtlshell.example.client.config
 import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.core.Platform
 import cc.turtl.turtlshell.api.client.ClientEvents
+import cc.turtl.turtlshell.api.client.config.custom.KeyAdapter
 import cc.turtl.turtlshell.example.client.TurtlShellKeybinds
+import cc.turtl.turtlshell.example.client.config.category.GeneralConfig
 import com.mojang.blaze3d.platform.InputConstants
 import dev.isxander.yacl3.api.YetAnotherConfigLib
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler
@@ -18,8 +20,7 @@ import net.minecraft.resources.ResourceLocation
 class TurtlShellConfigClient {
 
     @SerialEntry
-    val general: cc.turtl.turtlshell.example.client.config.category.GeneralConfig =
-        _root_ide_package_.cc.turtl.turtlshell.example.client.config.category.GeneralConfig()
+    val general: GeneralConfig = GeneralConfig()
 
     companion object {
         private val HANDLER: ConfigClassHandler<TurtlShellConfigClient> =
@@ -31,7 +32,7 @@ class TurtlShellConfigClient {
                         .appendGsonBuilder {
                             it.setPrettyPrinting()
                                 .registerTypeHierarchyAdapter(InputConstants.Key::class.java,
-                                    _root_ide_package_.cc.turtl.turtlshell.api.client.config.custom.KeyAdapter()
+                                    KeyAdapter()
                                 )
                         }
                         .build()
