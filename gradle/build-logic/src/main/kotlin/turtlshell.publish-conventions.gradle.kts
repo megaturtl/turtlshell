@@ -40,7 +40,7 @@ publishing {
             @Suppress("UnstableApiUsage")
             loom.disableDeprecatedPomGeneration(this)
 
-            groupId = "cc.turtl"
+            groupId = "cc.turtl.turtlshell"
             artifactId = project.findProperty("maven.artifactId")?.toString() ?: project.name
             version = project.writeVersion(VersionType.PUBLISHING)
             pom {

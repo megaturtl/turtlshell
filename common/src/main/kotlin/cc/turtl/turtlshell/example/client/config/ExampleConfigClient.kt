@@ -4,7 +4,7 @@ import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.core.Platform
 import cc.turtl.turtlshell.api.client.ClientEvents
 import cc.turtl.turtlshell.api.client.config.custom.KeyAdapter
-import cc.turtl.turtlshell.example.client.TurtlShellKeybinds
+import cc.turtl.turtlshell.example.client.ExampleKeybinds
 import cc.turtl.turtlshell.example.client.config.category.GeneralConfig
 import com.mojang.blaze3d.platform.InputConstants
 import dev.isxander.yacl3.api.YetAnotherConfigLib
@@ -17,14 +17,14 @@ import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 
-class TurtlShellConfigClient {
+class ExampleConfigClient {
 
     @SerialEntry
     val general: GeneralConfig = GeneralConfig()
 
     companion object {
-        private val HANDLER: ConfigClassHandler<TurtlShellConfigClient> =
-            ConfigClassHandler.createBuilder(TurtlShellConfigClient::class.java)
+        private val HANDLER: ConfigClassHandler<ExampleConfigClient> =
+            ConfigClassHandler.createBuilder(ExampleConfigClient::class.java)
                 .id(ResourceLocation.fromNamespaceAndPath(BuildDetails.MOD_ID, "config"))
                 .serializer { config ->
                     GsonConfigSerializerBuilder.create(config)
@@ -43,14 +43,14 @@ class TurtlShellConfigClient {
             HANDLER.load()
             ClientEvents.TICK_POST.subscribe {
                 val client = Minecraft.getInstance()
-                while (TurtlShellKeybinds.OPEN_CONFIG.consumeClick()) {
+                while (ExampleKeybinds.OPEN_CONFIG.consumeClick()) {
                     val currentScreen = client.screen
                     client.execute { client.setScreen(createScreen(currentScreen)) }
                 }
             }
         }
 
-        fun get(): TurtlShellConfigClient = HANDLER.instance()
+        fun get(): ExampleConfigClient = HANDLER.instance()
         fun save() = HANDLER.save()
 
         fun createScreen(parent: Screen?): Screen =

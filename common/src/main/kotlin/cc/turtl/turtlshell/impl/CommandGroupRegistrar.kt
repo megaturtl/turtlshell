@@ -9,9 +9,22 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.commands.CommandSourceStack
 
-internal object CommandGroupRegistrar {
+/**
+ * Internal logic for registering [CommandRegistry] data into live Brigadier commands.
+ */
+object CommandGroupRegistrar {
 
-    fun register(
+    /**
+     * Pulls all registered command groups from the API and registers them to the dispatcher.
+     * Called during each platform's command registration event.
+     */
+    fun registerAll(dispatcher: CommandDispatcher<CommandSourceStack>) {
+        CommandRegistry.getGroups().forEach { group ->
+            registerGroup(dispatcher, group)
+        }
+    }
+
+    private fun registerGroup(
         dispatcher: CommandDispatcher<CommandSourceStack>,
         group: CommandRegistry.CommandGroup
     ) {

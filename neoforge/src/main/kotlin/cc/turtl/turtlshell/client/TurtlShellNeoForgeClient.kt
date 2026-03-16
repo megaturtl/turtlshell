@@ -2,8 +2,8 @@ package cc.turtl.turtlshell.client
 
 import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.client.keybind.KeybindRegistry
-import cc.turtl.turtlshell.example.client.TurtlShellEntryClient
-import cc.turtl.turtlshell.example.client.config.TurtlShellConfigClient
+import cc.turtl.turtlshell.example.client.ExampleCommonClient
+import cc.turtl.turtlshell.example.client.config.ExampleConfigClient
 import net.minecraft.client.gui.screens.Screen
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
@@ -19,7 +19,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 @Mod(value = BuildDetails.MOD_ID, dist = [Dist.CLIENT])
 object TurtlShellNeoForgeClient {
     init {
-        TurtlShellEntryClient.init()
+        ExampleCommonClient.init()
         registerConfigScreen()
     }
 
@@ -29,7 +29,7 @@ object TurtlShellNeoForgeClient {
                 c.registerExtensionPoint(
                     IConfigScreenFactory::class.java,
                     IConfigScreenFactory { container: ModContainer, parent: Screen ->
-                        TurtlShellConfigClient.createScreen(parent)
+                        ExampleConfigClient.createScreen(parent)
                     })
             }
     }

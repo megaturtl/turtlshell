@@ -1,9 +1,5 @@
 package cc.turtl.turtlshell.api.core.command
 
-import cc.turtl.turtlshell.impl.CommandGroupRegistrar
-import com.mojang.brigadier.CommandDispatcher
-import net.minecraft.commands.CommandSourceStack
-
 object CommandRegistry {
 
     data class CommandGroup(
@@ -15,7 +11,7 @@ object CommandRegistry {
 
     /**
      * Register a group of commands under one or more root aliases.
-     * Call this during mod initialization before platform registration.
+     * Externals mods should call this during mod init before platform registration.
      */
     fun registerGroup(aliases: List<String>, commands: List<TurtlShellCommand>) {
         require(aliases.isNotEmpty()) { "Must provide at least one alias" }
@@ -23,12 +19,5 @@ object CommandRegistry {
         groups += CommandGroup(aliases, commands)
     }
 
-    /**
-     * Called by platform-specific impls to wire everything into the brigadier dispatcher.
-     */
-    fun applyAll(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        groups.forEach { group ->
-            CommandGroupRegistrar.register(dispatcher, group)
-        }
-    }
+    fun getGroups(): List<CommandGroup> = groups
 }

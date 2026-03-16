@@ -1,7 +1,7 @@
 package cc.turtl.turtlshell.example.client.config.category
 
 import cc.turtl.turtlshell.api.client.config.OptionFactory
-import cc.turtl.turtlshell.example.client.TurtlShellKeybinds
+import cc.turtl.turtlshell.example.client.ExampleKeybinds
 import dev.isxander.yacl3.api.ConfigCategory
 import dev.isxander.yacl3.config.v2.api.SerialEntry
 import net.minecraft.network.chat.Component
@@ -23,7 +23,7 @@ class GeneralConfig {
         .option(
             OptionFactory.keyMappingPicker(
                 "ts.config.general.open_config_keybind",
-                TurtlShellKeybinds.OPEN_CONFIG
+                ExampleKeybinds.OPEN_CONFIG
             )
         )
         .build()

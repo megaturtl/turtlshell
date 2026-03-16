@@ -3,7 +3,7 @@ package cc.turtl.turtlshell.example.core
 import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.core.command.CommandRegistry
 
-object TurtlShellEntry {
+object ExampleCommon {
     fun init() {
 
         CommandRegistry.registerGroup(

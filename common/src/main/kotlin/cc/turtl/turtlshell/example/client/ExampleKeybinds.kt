@@ -5,7 +5,7 @@ import com.mojang.blaze3d.platform.InputConstants
 import net.minecraft.client.KeyMapping
 import org.lwjgl.glfw.GLFW
 
-object TurtlShellKeybinds {
+object ExampleKeybinds {
     val OPEN_CONFIG = KeyMapping(
         "ts.key.open_config",
         InputConstants.Type.KEYSYM,

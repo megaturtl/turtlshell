@@ -2,16 +2,16 @@ package cc.turtl.turtlshell.example.client
 
 import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.client.keybind.KeybindRegistry
-import cc.turtl.turtlshell.example.client.config.TurtlShellConfigClient
+import cc.turtl.turtlshell.example.client.config.ExampleConfigClient
 
-object TurtlShellEntryClient {
+object ExampleCommonClient {
     fun init() {
 
         KeybindRegistry.registerGroup(
             category = BuildDetails.MOD_DISPLAY_NAME,
-            keybinds = TurtlShellKeybinds.ALL
+            keybinds = ExampleKeybinds.ALL
         )
 
-        TurtlShellConfigClient.init()
+        ExampleConfigClient.init()
     }
 }
