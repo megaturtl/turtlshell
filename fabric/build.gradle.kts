@@ -1,5 +1,3 @@
-import utilities.writeVersion
-
 configurations.all {
     resolutionStrategy {
         force(libs.fabric.loader)
@@ -58,6 +56,7 @@ tasks {
     }
 
     processResources {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         dependsOn(copyAccessWidener)
 
         inputs.property("mod_id", project.property("mod_id"))
