@@ -47,3 +47,17 @@ object ColorLib {
         val RAINBOW = Gradient(RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK)
     }
 }
+
+/**
+ * Returns the color as an ARGB int.
+ */
+val Color.argb: Int
+    get() = (alpha shl 24) or (red shl 16) or (green shl 8) or blue
+
+/**
+ * Returns a copy of this color with the given opacity applied.
+ *
+ * @param amount opacity from 0.0 (fully transparent) to 1.0 (fully opaque)
+ */
+fun Color.opacity(amount: Float): Color =
+    Color(red, green, blue, (amount.coerceIn(0f, 1f) * 255).toInt())
