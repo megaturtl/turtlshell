@@ -93,8 +93,8 @@ open class BaseGui(
 
     private fun renderDividers(context: GuiGraphics) {
         val dividerX = guiX + GUI_PADDING + SIDEBAR_WIDTH + GUI_PADDING
-        val dividerTop = guiY + HEADER_HEIGHT + GUI_PADDING - 1
-        val dividerBottom = guiY + baseHeight - GUI_PADDING + 1
+        val dividerTop = guiY + HEADER_HEIGHT
+        val dividerBottom = guiY + baseHeight
         context.fill(dividerX, dividerTop, dividerX + DIVIDER_WIDTH, dividerBottom, COLOR_DIVIDER.rgb)
     }
 
