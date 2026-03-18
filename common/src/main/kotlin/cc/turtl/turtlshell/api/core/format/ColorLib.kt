@@ -17,7 +17,7 @@ object ColorLib {
     val SLATE: Color = Color(0x181825)
     val LIGHT_SLATE: Color = Color(0x353749)
 
-    val OFF_WHITE: Color = Color(0xDBEAFF)
+    val OFF_WHITE: Color = Color(0xC4E1FF)
 
     // --- Rainbow Palette ---
     val RED: Color = Color(0xe43d4f)

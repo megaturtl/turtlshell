@@ -21,5 +21,7 @@
   "ts.command.info.commit.label": "Commit",
   "ts.command.info.branch.label": "Branch",
 
-  "ts.key.open_config": "Open Config"
+  "ts.key.open_config": "Open Config",
+
+  "ts.gui.base.title": "TurtlShell GUI"
 }

@@ -21,20 +21,20 @@ class CloseButton(
 ) : Button(btnX, btnY, SIZE, SIZE, Component.empty(), onPress, DEFAULT_NARRATION) {
 
     companion object {
-        const val SIZE = 8
+        const val SIZE = 14
+
         private const val PADDING = 1
+        private const val ICON_SIZE = SIZE - PADDING * 2
 
-        const val ICON_SIZE = SIZE - PADDING * 2
-
-        private val COLOR_ICON_IDLE = ColorLib.WHITE
-        private val COLOR_ICON_HOVER = ColorLib.OFF_WHITE
-        private val COLOR_BG_IDLE = ColorLib.DARK_SLATE
-        private val COLOR_BG_HOVER = ColorLib.SLATE
+        private val COLOR_IDLE_BG = ColorLib.DARK_SLATE
+        private val COLOR_IDLE_ICON = ColorLib.OFF_WHITE
+        private val COLOR_HOVER_BG = ColorLib.SLATE
+        private val COLOR_HOVER_ICON = ColorLib.WHITE
     }
 
     override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
-        val bgColor = if (isHovered) COLOR_BG_HOVER.rgb else COLOR_BG_IDLE.rgb
-        val iconColor = if (isHovered) COLOR_ICON_HOVER else COLOR_ICON_IDLE
+        val bgColor = if (isHovered) COLOR_HOVER_BG.rgb else COLOR_IDLE_BG.rgb
+        val iconColor = if (isHovered) COLOR_HOVER_ICON else COLOR_IDLE_ICON
 
         context.fill(x, y, x + width, y + height, bgColor)
 
@@ -43,7 +43,7 @@ class CloseButton(
             x + (width - ICON_SIZE) / 2,
             y + (height - ICON_SIZE) / 2,
             ICON_SIZE,
-            color = iconColor
+            color = iconColor,
         )
     }
 
