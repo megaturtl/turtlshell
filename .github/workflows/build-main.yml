@@ -54,7 +54,7 @@ jobs:
             !**/*javadoc*
 
       - name: Publish to maven.turtl.cc
-        run: ./gradlew publish -Pmod_version="${{ steps.version.outputs.version }}"
+        run: ./gradlew publish
         env:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}

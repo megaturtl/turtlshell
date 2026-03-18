@@ -2,23 +2,19 @@ package utilities
 
 import org.gradle.api.Project
 
-fun Project.version(): String {
-    return rootProject.property("mod_version").toString()
-}
-
-fun Project.isSnapshot(): Boolean {
-    return rootProject.property("snapshot") == "true"
-}
+fun Project.isSnapshot(): Boolean = rootProject.property("snapshot").toString() == "true"
 
 fun Project.writeVersion(type: VersionType = VersionType.FULL): String {
-    val version = "${rootProject.property("mod_version")}+${rootProject.property("mc_version")}"
+    val modVer = rootProject.property("mod_version").toString()
+    val mcVer = rootProject.property("mc_version").toString()
+    val baseVersion = "$modVer+$mcVer"
+
     return when (type) {
-        VersionType.PUBLISHING -> if (this.isSnapshot()) "$version-SNAPSHOT" else version
-        VersionType.FULL -> if (this.isSnapshot()) rootProject.version.toString() else version
+        // This is the "Discovery" version. ALWAYS use -SNAPSHOT for Maven.
+        VersionType.PUBLISHING -> if (isSnapshot()) "$baseVersion-SNAPSHOT" else baseVersion
+        // This is the "Identity" version. The build scripts will append the Git info.
+        VersionType.FULL -> baseVersion
     }
 }
 
-enum class VersionType {
-    PUBLISHING,
-    FULL
-}
+enum class VersionType { PUBLISHING, FULL }

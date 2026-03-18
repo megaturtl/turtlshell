@@ -1,3 +1,5 @@
+import utilities.writeVersion
+
 plugins {
     id("turtlshell.platform-conventions")
     id("turtlshell.publish-conventions")
@@ -52,7 +54,7 @@ tasks {
         inputs.property("mod_author", project.property("mod_author"))
         inputs.property("mod_description", project.property("mod_description"))
 
-        inputs.property("version", rootProject.version)
+        inputs.property("version", rootProject.version.toString())
         inputs.property("minecraft_version", rootProject.property("mc_version").toString())
         inputs.property("java_version", rootProject.property("java_version").toString())
 
@@ -63,7 +65,7 @@ tasks {
                 "mod_author" to project.property("mod_author"),
                 "mod_description" to project.property("mod_description"),
 
-                "version" to rootProject.version,
+                "version" to rootProject.version.toString(),
                 "minecraft_version" to rootProject.property("mc_version").toString(),
                 "java_version" to rootProject.property("java_version").toString()
             )

@@ -42,11 +42,15 @@ publishing {
 
             groupId = "cc.turtl.turtlshell"
             artifactId = project.findProperty("maven.artifactId")?.toString() ?: project.name
+
             version = project.writeVersion(VersionType.PUBLISHING)
+
             pom {
-                properties = mapOf(
-                    "gitCommit" to versioning.info.commit
-                )
+                properties.set(mapOf(
+                    "gitBranch" to versioning.info.branch,
+                    "gitCommit" to versioning.info.commit,
+                    "buildNumber" to versioning.info.build.toString()
+                ))
             }
         }
     }

@@ -1,11 +1,17 @@
+import utilities.isSnapshot
+import utilities.writeVersion
+
 plugins {
     id("turtlshell.root-conventions")
 }
 
-version = "${project.property("mod_version")}+${project.property("mc_version")}"
+// Start with the base: 1.0.1+1.21.1
+val base = project.writeVersion(utilities.VersionType.FULL)
 
-val isSnapshot = project.property("snapshot")?.equals("true") == true
-if (isSnapshot) {
-    val fixedBranchName = versioning.info.branch.substringAfter("/")
-    version = "$version-${fixedBranchName}-${versioning.info.build}"
+// Append the Git info ONLY if it's a snapshot
+version = if (project.isSnapshot()) {
+    val branch = versioning.info.branch.substringAfter("/")
+    "$base-$branch-${versioning.info.build}"
+} else {
+    base
 }
