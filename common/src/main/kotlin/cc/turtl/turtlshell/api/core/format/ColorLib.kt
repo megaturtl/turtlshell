@@ -12,25 +12,28 @@ object ColorLib {
     val LIGHT_GRAY: Color = Color(0xAAAAAA)
     val DARK_GRAY: Color = Color(0x555555)
 
+    // --- UI Colors ---
+    val DARK_SLATE: Color = Color(0x0f0f17)
+    val SLATE: Color = Color(0x181825)
+    val LIGHT_SLATE: Color = Color(0x353749)
+
+    val OFF_WHITE: Color = Color(0xF0FCFF)
+
     // --- Rainbow Palette ---
-    val RED: Color = Color(0xE13538)
-    val ORANGE: Color = Color(0xF9844A)
-    val YELLOW: Color = Color(0xF9C74F)
-    val GREEN: Color = Color(0x41D73B)
-    val BLUE: Color = Color(0x2D73B0)
-    val PURPLE: Color = Color(0x6C44C3)
+    val RED: Color = Color(0xe43d4f)
+    val ORANGE: Color = Color(0xe76c20)
+    val YELLOW: Color = Color(0xf7de38)
+    val GREEN: Color = Color(0x73e04d)
+    val BLUE: Color = Color(0x3b6efa)
+    val PURPLE: Color = Color(0x8729fa)
     val PINK: Color = Color(0xF46997)
 
     // --- Extended Palette ---
-    val CRIMSON: Color = Color(0xDC143C)
-    val CORAL: Color = Color(0xFF7F50)
     val GOLD: Color = Color(0xFFD700)
-    val LIME: Color = Color(0x32CD32)
     val INDIGO: Color = Color(0x4B0082)
     val MAGENTA: Color = Color(0xFF00FF)
     val BROWN: Color = Color(0x8B4513)
     val AQUA: Color = Color(0x40E0D0)
-    val LAVENDER: Color = Color(0xDEDEFC)
     val MINT: Color = Color(0x98FF98)
     val TEAL: Color = Color(0x008080)
 
