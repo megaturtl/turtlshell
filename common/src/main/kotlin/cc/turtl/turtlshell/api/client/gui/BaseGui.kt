@@ -20,17 +20,15 @@ open class BaseGui(
     protected var guiX: Int = 0
     protected var guiY: Int = 0
 
-    /**
-     * Top-left corner of the padded content area, below the header divider.
-     * Use these to position child widgets.
-     */
-    protected val contentX get() = guiX + GUI_PADDING
-    protected val contentY get() = guiY + HEADER_HEIGHT + GUI_PADDING
+    /** Top-left corner and width of the sidebar panel. */
+    protected val sidebarX get() = guiX + GUI_PADDING
+    protected val sidebarY get() = guiY + HEADER_HEIGHT + GUI_PADDING
+    protected val sidebarWidth get() = SIDEBAR_WIDTH
 
-    /**
-     * Usable width of the content area after padding is applied on both sides.
-     */
-    protected val contentWidth get() = baseWidth - GUI_PADDING * 2
+    /** Top-left corner and width of the main content panel. */
+    protected val contentX get() = guiX + GUI_PADDING + SIDEBAR_WIDTH + DIVIDER_WIDTH + GUI_PADDING
+    protected val contentY get() = guiY + HEADER_HEIGHT + GUI_PADDING
+    protected val contentWidth get() = baseWidth - SIDEBAR_WIDTH - DIVIDER_WIDTH - GUI_PADDING * 3
 
     companion object {
         /** Inset applied to content and header elements within the panel. */
@@ -39,7 +37,13 @@ open class BaseGui(
         /** Height of the header section (includes title and close button). */
         const val HEADER_HEIGHT = 18
 
-        private val COLOR_TITLE = ColorLib.OFF_WHITE
+        /** Width of the sidebar panel. */
+        const val SIDEBAR_WIDTH = 80
+
+        /** Width of the vertical divider between sidebar and content. */
+        const val DIVIDER_WIDTH = 1
+
+        private val COLOR_TITLE   = ColorLib.OFF_WHITE
         private val COLOR_DIVIDER = ColorLib.LIGHT_SLATE
 
         fun open() {
@@ -65,13 +69,14 @@ open class BaseGui(
         context.fill(guiX, guiY, guiX + baseWidth, guiY + baseHeight, bgRGB)
 
         renderHeader(context)
+        renderDividers(context)
 
         super.render(context, mouseX, mouseY, delta)
     }
 
     private fun renderHeader(context: GuiGraphics) {
-        val titleX = guiX + GUI_PADDING + 2 // compensate for button padding
-        val titleY = guiY + (HEADER_HEIGHT - font.lineHeight) / 2 + 2 // compensate for button padding
+        val titleX = guiX + GUI_PADDING + 2
+        val titleY = guiY + (HEADER_HEIGHT - font.lineHeight) / 2 + 2
 
         context.drawString(
             font,
@@ -83,7 +88,14 @@ open class BaseGui(
         )
 
         val dividerY = guiY + HEADER_HEIGHT
-        context.fill(guiX, dividerY, guiX + baseWidth, dividerY + 1, COLOR_DIVIDER.rgb)
+        context.fill(guiX, dividerY, guiX + baseWidth, dividerY + DIVIDER_WIDTH, COLOR_DIVIDER.rgb)
+    }
+
+    private fun renderDividers(context: GuiGraphics) {
+        val dividerX = guiX + GUI_PADDING + SIDEBAR_WIDTH + GUI_PADDING
+        val dividerTop = guiY + HEADER_HEIGHT + GUI_PADDING - 1
+        val dividerBottom = guiY + baseHeight - GUI_PADDING + 1
+        context.fill(dividerX, dividerTop, dividerX + DIVIDER_WIDTH, dividerBottom, COLOR_DIVIDER.rgb)
     }
 
     override fun renderBlurredBackground(delta: Float) {}
