@@ -37,7 +37,7 @@ jobs:
           echo "version=${TAG#v}" >> $GITHUB_OUTPUT
 
       - name: Build
-        run: ./gradlew build -Pmod_version="${{ steps.version.outputs.version }}"
+        run: ./gradlew build
         env:
           GRADLE_OPTS: -Xmx4G -Xms4G
 
@@ -63,7 +63,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish to maven.turtl.cc
-        run: ./gradlew publish -Pmod_version="${{ steps.version.outputs.version }}"
+        run: ./gradlew publish
         env:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
