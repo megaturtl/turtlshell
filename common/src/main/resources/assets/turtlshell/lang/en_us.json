@@ -23,5 +23,6 @@
 
   "ts.key.open_config": "Open Config",
 
-  "ts.gui.base.title": "TurtlShell GUI"
+  "ts.gui.base.title": "TurtlShell GUI",
+  "ts.gui.tab.build": "Build"
 }

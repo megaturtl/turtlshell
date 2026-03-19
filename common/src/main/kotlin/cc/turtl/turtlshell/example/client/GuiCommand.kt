@@ -1,6 +1,6 @@
 package cc.turtl.turtlshell.example.client
 
-import cc.turtl.turtlshell.api.client.gui.BaseGui
+import cc.turtl.turtlshell.api.client.gui.ModalScreen
 import cc.turtl.turtlshell.api.core.command.TurtlShellCommand
 import cc.turtl.turtlshell.api.core.format.MessagePatterns
 import com.mojang.brigadier.Command
@@ -18,7 +18,7 @@ object GuiCommand : TurtlShellCommand {
     override val description: MutableComponent = Component.translatable("ts.command.gui.desc")
 
     enum class Guis(val argName: String, val opener: () -> Unit) {
-        BASE("base", { BaseGui.open() });
+        BASE("base", { ModalScreen.open() });
 
         companion object {
             fun find(name: String) = entries.find { it.argName.equals(name, ignoreCase = true) }
