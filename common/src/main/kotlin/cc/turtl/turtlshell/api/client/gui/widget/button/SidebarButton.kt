@@ -14,14 +14,16 @@ import net.minecraft.network.chat.Component
 class SidebarButton(
     btnX: Int,
     btnY: Int,
+    btnW: Int,
+    btnH: Int,
     message: Component,
     onPress: OnPress,
     private val icon: Icon? = null,
 ) : Button(
     btnX,
     btnY,
-    DEFAULT_GUI_SIDEBAR_WIDTH,
-    DEFAULT_GUI_SIDEBAR_BUTTON_HEIGHT,
+    btnW,
+    btnH,
     message,
     onPress,
     DEFAULT_NARRATION
@@ -69,7 +71,7 @@ class SidebarButton(
 
         context.renderSimpleIcon(
             SimpleIcons.CHEVRON_RIGHT,
-            x + width - IconSize.SM.px - DEFAULT_GUI_PADDING, // right aligned
+            x + width - IconSize.SM.px - DEFAULT_GUI_PADDING * 2, // right aligned
             y + (height - IconSize.SM.px) / 2, // vertically centred
             IconSize.SM,
             color = ICON_COLOR,

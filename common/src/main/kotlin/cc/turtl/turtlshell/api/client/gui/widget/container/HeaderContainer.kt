@@ -1,7 +1,5 @@
 package cc.turtl.turtlshell.api.client.gui.widget.container
 
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_DIVIDER_WIDTH
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_LIGHT_COLOR
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_PADDING
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_TEXT_COLOR
 import cc.turtl.turtlshell.api.client.gui.widget.button.CloseButton
@@ -47,9 +45,6 @@ class HeaderContainer(
         val titleY = y + (height - font.lineHeight) / 2 + 2
 
         guiGraphics.drawString(font, message, titleX, titleY, DEFAULT_GUI_TEXT_COLOR.rgb, false)
-
-        val dividerY = y + height
-        guiGraphics.fill(x, dividerY, x + width, dividerY + DEFAULT_GUI_DIVIDER_WIDTH, DEFAULT_GUI_LIGHT_COLOR.rgb)
 
         closeButton.render(guiGraphics, mouseX, mouseY, partialTick)
     }

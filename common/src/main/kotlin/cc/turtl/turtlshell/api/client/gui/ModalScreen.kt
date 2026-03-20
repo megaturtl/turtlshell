@@ -13,6 +13,7 @@ open class ModalScreen(
     private val screenW: Int = DEFAULT_GUI_MODAL_WIDTH,
     private val screenH: Int = DEFAULT_GUI_MODAL_HEIGHT,
     private val bgRGB: Int = DEFAULT_GUI_DARK_COLOR.rgb,
+    private val lightRGB: Int = DEFAULT_GUI_LIGHT_COLOR.rgb,
     private val accentRGB: Int = DEFAULT_GUI_ACCENT_COLOR.rgb,
 ) : Screen(title) {
 
@@ -21,6 +22,11 @@ open class ModalScreen(
      */
     protected var screenX: Int = 0
     protected var screenY: Int = 0
+
+    protected var headerDividerX: Int = 0
+    protected var headerDividerY: Int = 0
+    protected var sidebarDividerX: Int = 0
+    protected var sidebarDividerY: Int = 0
 
     companion object {
         fun open() {
@@ -35,21 +41,27 @@ open class ModalScreen(
 
         val headerX = screenX
         val headerY = screenY
-        val headerW = width
+        val headerW = screenW
         val headerH = DEFAULT_GUI_HEADER_HEIGHT
         val header = HeaderContainer(headerX, headerY, headerW, headerH, title) { onClose() }
 
         val sidebarX = screenX
-        val sidebarY = screenY + headerH
+        val sidebarY = screenY + headerH + DEFAULT_GUI_DIVIDER_WIDTH
         val sidebarW = DEFAULT_GUI_SIDEBAR_WIDTH
-        val sidebarH = screenH - headerH
+        val sidebarH = screenH - headerH - DEFAULT_GUI_DIVIDER_WIDTH
         val sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH)
 
-        val bodyX = screenX + sidebarW
-        val bodyY = screenY + headerH
-        val bodyW = screenW - sidebarW
-        val bodyH = screenH - headerH
+        val bodyX = screenX + sidebarW + DEFAULT_GUI_DIVIDER_WIDTH
+        val bodyY = screenY + headerH + DEFAULT_GUI_DIVIDER_WIDTH
+        val bodyW = screenW - sidebarW - DEFAULT_GUI_DIVIDER_WIDTH
+        val bodyH = screenH - headerH - DEFAULT_GUI_DIVIDER_WIDTH
         val body = VerticalScrollContainer(bodyX, bodyY, bodyW, bodyH)
+
+        headerDividerX = screenX
+        headerDividerY = screenY + headerH
+
+        sidebarDividerX = screenX + sidebarW
+        sidebarDividerY = sidebarY
 
         addRenderableWidget(header)
         addRenderableWidget(sidebar)
@@ -59,6 +71,11 @@ open class ModalScreen(
     override fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         // Fill parent panel bg
         context.fill(screenX, screenY, screenX + screenW, screenY + screenH, bgRGB)
+
+        // Render container dividers
+        context.fill(sidebarDividerX, sidebarDividerY, sidebarDividerX + DEFAULT_GUI_DIVIDER_WIDTH, screenY + screenH, lightRGB)
+        context.fill(headerDividerX, headerDividerY, headerDividerX + screenW, headerDividerY + DEFAULT_GUI_DIVIDER_WIDTH, lightRGB)
+
         super.render(context, mouseX, mouseY, delta)
     }
 
