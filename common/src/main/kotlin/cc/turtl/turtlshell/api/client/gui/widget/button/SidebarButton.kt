@@ -1,4 +1,4 @@
-package cc.turtl.turtlshell.api.client.gui.widget
+package cc.turtl.turtlshell.api.client.gui.widget.button
 
 import cc.turtl.turtlshell.api.client.gui.*
 import cc.turtl.turtlshell.api.client.gui.texture.Icon

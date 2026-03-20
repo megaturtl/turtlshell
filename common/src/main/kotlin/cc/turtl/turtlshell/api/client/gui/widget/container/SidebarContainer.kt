@@ -5,7 +5,7 @@ import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_LIGHT_COLOR
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_PADDING
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_SIDEBAR_WIDTH
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
-import cc.turtl.turtlshell.api.client.gui.widget.SidebarButton
+import cc.turtl.turtlshell.api.client.gui.widget.button.SidebarButton
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.AbstractContainerWidget
 import net.minecraft.client.gui.components.events.GuiEventListener
@@ -15,21 +15,22 @@ import net.minecraft.network.chat.Component
 /**
  * Sidebar element of the GUI. This usually contains nav links.
  */
-class SidebarWidget(
-    posX: Int,
-    posY: Int,
-    private val sidebarHeight: Int,
+class SidebarContainer(
+    sidebarX: Int,
+    sidebarY: Int,
+    sidebarW: Int,
+    sidebarH: Int,
 ) : AbstractContainerWidget(
-    posX,
-    posY,
-    DEFAULT_GUI_SIDEBAR_WIDTH + DEFAULT_GUI_DIVIDER_WIDTH,
-    sidebarHeight,
+    sidebarX,
+    sidebarY,
+    sidebarW,
+    sidebarH,
     Component.empty()
 ) {
 
     private val testButton = SidebarButton(
-        posX,
-        posY + DEFAULT_GUI_PADDING,
+        x,
+        y + DEFAULT_GUI_PADDING,
         Component.translatable("ts.gui.tab.build"),
         onPress = {},
         SimpleIcons.HAMMER
@@ -44,13 +45,13 @@ class SidebarWidget(
         partialTick: Float,
     ) {
 
-        val dividerX = x + DEFAULT_GUI_SIDEBAR_WIDTH
+        val dividerX = x + width
 
         guiGraphics.fill(
             dividerX,
             y,
             dividerX + DEFAULT_GUI_DIVIDER_WIDTH,
-            y + sidebarHeight,
+            y + height,
             DEFAULT_GUI_LIGHT_COLOR.rgb
         )
 

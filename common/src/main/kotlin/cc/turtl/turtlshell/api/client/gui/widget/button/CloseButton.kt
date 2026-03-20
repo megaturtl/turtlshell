@@ -1,4 +1,4 @@
-package cc.turtl.turtlshell.api.client.gui.widget
+package cc.turtl.turtlshell.api.client.gui.widget.button
 
 import cc.turtl.turtlshell.api.client.gui.*
 import cc.turtl.turtlshell.api.client.gui.texture.IconSize
@@ -19,12 +19,11 @@ import net.minecraft.network.chat.Component
 class CloseButton(
     btnX: Int,
     btnY: Int,
+    btnSize: Int,
     onPress: OnPress,
-) : Button(btnX, btnY, SIZE, SIZE, Component.empty(), onPress, DEFAULT_NARRATION) {
+) : Button(btnX, btnY, btnSize, btnSize, Component.empty(), onPress, DEFAULT_NARRATION) {
 
     companion object {
-        const val SIZE = DEFAULT_GUI_HEADER_HEIGHT - DEFAULT_GUI_PADDING * 2
-
         private val BG_COLOR_IDLE = DEFAULT_GUI_DARK_COLOR
         private val BG_COLOR_HOVER = DEFAULT_GUI_MED_COLOR
         private val ICON_COLOR = DEFAULT_GUI_TEXT_COLOR

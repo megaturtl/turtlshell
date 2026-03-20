@@ -2,8 +2,8 @@ package cc.turtl.turtlshell.api.client.gui
 
 import cc.turtl.turtlshell.api.core.format.ColorLib
 
-const val DEFAULT_GUI_PANEL_WIDTH = 380
-const val DEFAULT_GUI_PANEL_HEIGHT = 200
+const val DEFAULT_GUI_MODAL_WIDTH = 380
+const val DEFAULT_GUI_MODAL_HEIGHT = 200
 const val DEFAULT_GUI_PADDING = 2
 
 const val DEFAULT_GUI_HEADER_HEIGHT = 18

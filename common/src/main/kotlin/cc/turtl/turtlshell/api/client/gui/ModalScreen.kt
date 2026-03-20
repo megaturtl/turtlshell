@@ -1,7 +1,8 @@
 package cc.turtl.turtlshell.api.client.gui
 
-import cc.turtl.turtlshell.api.client.gui.widget.container.HeaderWidget
-import cc.turtl.turtlshell.api.client.gui.widget.container.SidebarWidget
+import cc.turtl.turtlshell.api.client.gui.widget.container.HeaderContainer
+import cc.turtl.turtlshell.api.client.gui.widget.container.SidebarContainer
+import cc.turtl.turtlshell.api.client.gui.widget.container.VerticalScrollContainer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.Screen
@@ -9,18 +10,17 @@ import net.minecraft.network.chat.Component
 
 open class ModalScreen(
     title: Component = Component.translatable("ts.gui.base.title"),
-    private val panelWidth: Int = DEFAULT_GUI_PANEL_WIDTH,
-    private val panelHeight: Int = DEFAULT_GUI_PANEL_HEIGHT,
+    private val screenW: Int = DEFAULT_GUI_MODAL_WIDTH,
+    private val screenH: Int = DEFAULT_GUI_MODAL_HEIGHT,
     private val bgRGB: Int = DEFAULT_GUI_DARK_COLOR.rgb,
     private val accentRGB: Int = DEFAULT_GUI_ACCENT_COLOR.rgb,
 ) : Screen(title) {
 
     /**
-     * Top-left coordinates of the gui panel, updated automatically during [init].
-     * Prefer the content-space properties below for positioning child widgets.
+     * Size/positioning info for this (the parent screen) - Easy access for children widgets.
      */
-    protected var guiX: Int = 0
-    protected var guiY: Int = 0
+    protected var screenX: Int = 0
+    protected var screenY: Int = 0
 
     companion object {
         fun open() {
@@ -30,22 +30,35 @@ open class ModalScreen(
 
     override fun init() {
         super.init()
-        guiX = (this.width - panelWidth) / 2
-        guiY = (this.height - panelHeight) / 2
+        screenX = (width - screenW) / 2
+        screenY = (height - screenH) / 2
 
-        addRenderableWidget(HeaderWidget(guiX, guiY, panelWidth, title) { onClose() })
-        addRenderableWidget(
-            SidebarWidget(
-                guiX,
-                guiY + DEFAULT_GUI_HEADER_HEIGHT + DEFAULT_GUI_DIVIDER_WIDTH,
-                panelHeight - DEFAULT_GUI_HEADER_HEIGHT - DEFAULT_GUI_DIVIDER_WIDTH
-            )
-        )
+        val headerX = screenX
+        val headerY = screenY
+        val headerW = width
+        val headerH = DEFAULT_GUI_HEADER_HEIGHT
+        val header = HeaderContainer(headerX, headerY, headerW, headerH, title) { onClose() }
+
+        val sidebarX = screenX
+        val sidebarY = screenY + headerH
+        val sidebarW = DEFAULT_GUI_SIDEBAR_WIDTH
+        val sidebarH = screenH - headerH
+        val sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH)
+
+        val bodyX = screenX + sidebarW
+        val bodyY = screenY + headerH
+        val bodyW = screenW - sidebarW
+        val bodyH = screenH - headerH
+        val body = VerticalScrollContainer(bodyX, bodyY, bodyW, bodyH)
+
+        addRenderableWidget(header)
+        addRenderableWidget(sidebar)
+        addRenderableWidget(body)
     }
 
     override fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         // Fill parent panel bg
-        context.fill(guiX, guiY, guiX + panelWidth, guiY + panelHeight, bgRGB)
+        context.fill(screenX, screenY, screenX + screenW, screenY + screenH, bgRGB)
         super.render(context, mouseX, mouseY, delta)
     }
 
