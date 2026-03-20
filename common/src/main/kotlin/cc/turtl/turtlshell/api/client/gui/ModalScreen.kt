@@ -1,8 +1,10 @@
 package cc.turtl.turtlshell.api.client.gui
 
+import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
 import cc.turtl.turtlshell.api.client.gui.widget.container.HeaderContainer
 import cc.turtl.turtlshell.api.client.gui.widget.container.SidebarContainer
-import cc.turtl.turtlshell.api.client.gui.widget.container.VerticalScrollContainer
+import cc.turtl.turtlshell.api.client.gui.widget.button.SidebarButton
+import cc.turtl.turtlshell.api.client.gui.widget.container.BodyContainer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.Screen
@@ -55,13 +57,15 @@ open class ModalScreen(
         val bodyY = screenY + headerH + DEFAULT_GUI_DIVIDER_WIDTH
         val bodyW = screenW - sidebarW - DEFAULT_GUI_DIVIDER_WIDTH
         val bodyH = screenH - headerH - DEFAULT_GUI_DIVIDER_WIDTH
-        val body = VerticalScrollContainer(bodyX, bodyY, bodyW, bodyH)
+        val body = BodyContainer(bodyX, bodyY, bodyW, bodyH)
 
         headerDividerX = screenX
         headerDividerY = screenY + headerH
 
         sidebarDividerX = screenX + sidebarW
         sidebarDividerY = sidebarY
+
+        populateDummyContent(body)
 
         addRenderableWidget(header)
         addRenderableWidget(sidebar)
@@ -81,4 +85,27 @@ open class ModalScreen(
 
     override fun renderBlurredBackground(delta: Float) {}
     override fun renderMenuBackground(context: GuiGraphics) {}
+
+    private fun populateDummyContent(body: BodyContainer) {
+        val itemHeight = 20
+        val itemCount = 20
+        val padding = DEFAULT_GUI_PADDING
+
+        repeat(itemCount) { i ->
+            val itemY = body.y + padding + i * (itemHeight + padding)
+            body.addContent(
+                SidebarButton(
+                    body.x + padding,
+                    itemY,
+                    40,
+                    20,
+                    Component.literal("Item ${i + 1}"),
+                    onPress = {},
+                    SimpleIcons.HAMMER
+                )
+            )
+        }
+
+        body.updateContentHeight(itemCount * (itemHeight + padding) + padding)
+    }
 }
