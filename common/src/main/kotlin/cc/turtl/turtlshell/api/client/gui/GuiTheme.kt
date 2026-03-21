@@ -20,7 +20,6 @@ data class GuiTheme(
     val darkColor: Color = ColorLib.DARK_SLATE,
     val textColor: Color = ColorLib.WHITE,
 
-    val font: Font = Minecraft.getInstance().font,
     val dividerWidth: Int = 1,
 
     // These are per side. So 1 padding above and below for example.

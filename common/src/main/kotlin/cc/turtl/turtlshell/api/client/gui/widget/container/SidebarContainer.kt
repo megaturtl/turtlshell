@@ -1,6 +1,6 @@
 package cc.turtl.turtlshell.api.client.gui.widget.container
 
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_SIDEBAR_BUTTON_HEIGHT
+import cc.turtl.turtlshell.api.client.gui.FONT_HEIGHT_PX
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
 import cc.turtl.turtlshell.api.client.gui.texture.Icon
 import cc.turtl.turtlshell.api.client.gui.widget.button.SidebarButton
@@ -20,25 +20,37 @@ class SidebarContainer(
 
     private val navButtons = mutableListOf<SidebarButton>()
 
+    val buttonCount: Int get() = navButtons.size
+
     /**
-     * Adds a button and automatically calculates its vertical position
-     * based on the current number of elements.
+     * Adds a nav button and automatically calculates its vertical position.
      */
-    fun addNavButton(label: String, icon: Icon, onClick: () -> Unit) {
-        val buttonY = this.y + theme.paddingMD + (navButtons.size * (DEFAULT_GUI_SIDEBAR_BUTTON_HEIGHT + theme.paddingSM))
+    fun addNavButton(label: String, icon: Icon, onPress: () -> Unit) {
+        val index = navButtons.size
+        val buttonH = FONT_HEIGHT_PX + theme.paddingLG * 2
+        val buttonY = this.y + theme.paddingMD + (index * buttonH)
 
         val button = SidebarButton(
+            Component.literal(label),
             this.x,
             buttonY,
             this.width,
-            DEFAULT_GUI_SIDEBAR_BUTTON_HEIGHT,
-            Component.literal(label),
+            buttonH,
+
             icon,
             theme,
-            onPress = { onClick() }
+            onPress = {
+                setActiveButton(index)
+                onPress()
+            }
         )
 
         navButtons.add(button)
+    }
+
+    /** Sets the button at [index] to active and deactivates all others. */
+    fun setActiveButton(index: Int) {
+        navButtons.forEachIndexed { i, btn -> btn.buttonActive = i == index }
     }
 
     override fun children(): List<GuiEventListener> = navButtons

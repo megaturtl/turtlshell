@@ -7,19 +7,16 @@ import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.resources.ResourceLocation
 import java.awt.Color
 
-private const val TEXTURE_SIZE = 16
+private const val TEXTURE_SIZE = 14
 
 data class Icon(val texture: ResourceLocation)
 
-/**
- * Render sizes for icons. Each value is a power of 2.
- */
 enum class IconSize(val px: Int) {
-    XS(2),
-    SM(4),
-    MD(8),
-    LG(16),
-    XL(32)
+    SM(7),
+    TST(11),
+    MD(14),
+    LG(21),
+    XL(28)
 }
 
 object SimpleIcons {

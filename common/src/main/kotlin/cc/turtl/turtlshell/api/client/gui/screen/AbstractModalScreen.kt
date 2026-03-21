@@ -4,6 +4,8 @@ import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_MODAL_HEIGHT
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_MODAL_WIDTH
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_SIDEBAR_WIDTH
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
+import cc.turtl.turtlshell.api.client.gui.FONT_HEIGHT_PX
+import cc.turtl.turtlshell.api.client.gui.texture.Icon
 import cc.turtl.turtlshell.api.client.gui.texture.IconSize
 import cc.turtl.turtlshell.api.client.gui.widget.container.BodyContainer
 import cc.turtl.turtlshell.api.client.gui.widget.container.HeaderContainer
@@ -40,7 +42,7 @@ abstract class AbstractModalScreen(
         val headerX = screenX
         val headerY = screenY
         val headerW = screenW
-        val headerH = max(theme.font.lineHeight - 2, IconSize.MD.px) + (theme.paddingMD * 2)
+        val headerH = IconSize.MD.px + theme.paddingMD * 2 + theme.paddingSM * 2
 
         val sidebarX = screenX
         val sidebarY = screenY + headerH + theme.dividerWidth
@@ -70,9 +72,38 @@ abstract class AbstractModalScreen(
 
     /**
      * Called after containers are initialised and registered.
-     * Override this in subclasses to populate the sidebar and body.
+     * Override this in subclasses to populate the sidebar and body via [addPage].
      */
     protected open fun initContainers() {}
+
+    /**
+     * Registers a nav button that loads a page into the body area when clicked.
+     *
+     * The [init] lambda runs on the [BodyContainer] receiver, so you can call
+     * addContent and updateContentHeight directly inside it. The first page
+     * added is shown immediately and its nav button is marked active.
+     *
+     * Example:
+     * ```
+     * addPage("Home", SimpleIcons.HOME) {
+     *     addContent(someWidget)
+     *     updateContentHeight(totalHeight)
+     * }
+     * ```
+     */
+    protected fun addPage(label: String, icon: Icon, init: BodyContainer.() -> Unit) {
+        val isFirstPage = sidebar.buttonCount == 0
+
+        sidebar.addNavButton(label, icon) {
+            body.clearContent()
+            body.init()
+        }
+
+        if (isFirstPage) {
+            sidebar.setActiveButton(0)
+            body.init()
+        }
+    }
 
     override fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         context.fill(screenX, screenY, screenX + screenW, screenY + screenH, theme.darkColor.rgb)

@@ -1,9 +1,12 @@
 package cc.turtl.turtlshell.api.client.gui.widget.container
 
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
+import cc.turtl.turtlshell.api.client.gui.drawText
 import cc.turtl.turtlshell.api.client.gui.drawVerticallyCentredText
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
 import cc.turtl.turtlshell.api.client.gui.widget.button.IconButton
+import cc.turtl.turtlshell.api.core.format.withBold
+import cc.turtl.turtlshell.api.core.format.withUnifont
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.AbstractContainerWidget
 import net.minecraft.client.gui.components.Button
@@ -50,7 +53,7 @@ class HeaderContainer(
     ) {
 
         val titleX = x + theme.paddingMD
-        guiGraphics.drawVerticallyCentredText(theme.font, message, titleX, y, height, theme.textColor.rgb)
+        guiGraphics.drawVerticallyCentredText(message.withBold(), titleX, y, height, theme.textColor.rgb, 1.5F)
 
         closeButton.render(guiGraphics, mouseX, mouseY, partialTick)
     }
