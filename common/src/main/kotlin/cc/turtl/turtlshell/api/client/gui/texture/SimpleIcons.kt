@@ -26,6 +26,8 @@ object SimpleIcons {
     val CROSS = Icon(iconResource("simple_icon_cross.png"))
     val HAMMER = Icon(iconResource("simple_icon_hammer.png"))
 
+    val MINUS = Icon(iconResource("simple_icon_minus.png"))
+
     val CHEVRON_RIGHT = Icon(iconResource("simple_icon_chevron_right.png"))
 }
 
@@ -36,14 +38,15 @@ object SimpleIcons {
  * @param x Left coordinate to start rendering at.
  * @param y Top coordinate to start rendering at.
  * @param size The size to render the icon at.
- * @param color The color to tint the icon with.
+ * @param rgb The color to tint the icon with.
  */
 fun GuiGraphics.renderSimpleIcon(
     icon: Icon,
     x: Int, y: Int,
     size: IconSize = IconSize.MD,
-    color: Color = ColorLib.WHITE
+    rgb: Int = ColorLib.WHITE.rgb
 ) {
+    val color = Color(rgb)
     RenderSystem.setShaderColor(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f)
     blit(icon.texture, x, y, size.px, size.px, 0f, 0f, TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE)
     RenderSystem.setShaderColor(1f, 1f, 1f, 1f)

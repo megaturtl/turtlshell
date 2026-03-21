@@ -1,5 +1,6 @@
 package cc.turtl.turtlshell.api.client.gui
 
+import cc.turtl.turtlshell.api.client.gui.texture.IconSize
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
 import cc.turtl.turtlshell.api.client.gui.widget.container.HeaderContainer
 import cc.turtl.turtlshell.api.client.gui.widget.container.SidebarContainer
@@ -9,14 +10,13 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
+import kotlin.math.max
 
 open class ModalScreen(
     title: Component = Component.translatable("ts.gui.base.title"),
     private val screenW: Int = DEFAULT_GUI_MODAL_WIDTH,
     private val screenH: Int = DEFAULT_GUI_MODAL_HEIGHT,
-    private val bgRGB: Int = DEFAULT_GUI_DARK_COLOR.rgb,
-    private val lightRGB: Int = DEFAULT_GUI_LIGHT_COLOR.rgb,
-    private val accentRGB: Int = DEFAULT_GUI_ACCENT_COLOR.rgb,
+    private val theme: GuiTheme = GuiTheme.DEFAULT,
 ) : Screen(title) {
 
     /**
@@ -44,20 +44,20 @@ open class ModalScreen(
         val headerX = screenX
         val headerY = screenY
         val headerW = screenW
-        val headerH = DEFAULT_GUI_HEADER_HEIGHT
-        val header = HeaderContainer(headerX, headerY, headerW, headerH, title) { onClose() }
+        val headerH = max(theme.font.lineHeight - 2, IconSize.MD.px) + (theme.paddingMD * 2)
+        val header = HeaderContainer(headerX, headerY, headerW, headerH, title, theme) { onClose() }
 
         val sidebarX = screenX
-        val sidebarY = screenY + headerH + DEFAULT_GUI_DIVIDER_WIDTH
+        val sidebarY = screenY + headerH + theme.dividerWidth
         val sidebarW = DEFAULT_GUI_SIDEBAR_WIDTH
-        val sidebarH = screenH - headerH - DEFAULT_GUI_DIVIDER_WIDTH
-        val sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH)
+        val sidebarH = screenH - headerH - theme.dividerWidth
+        val sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH, theme)
 
-        val bodyX = screenX + sidebarW + DEFAULT_GUI_DIVIDER_WIDTH
-        val bodyY = screenY + headerH + DEFAULT_GUI_DIVIDER_WIDTH
-        val bodyW = screenW - sidebarW - DEFAULT_GUI_DIVIDER_WIDTH
-        val bodyH = screenH - headerH - DEFAULT_GUI_DIVIDER_WIDTH
-        val body = BodyContainer(bodyX, bodyY, bodyW, bodyH)
+        val bodyX = screenX + sidebarW + theme.dividerWidth
+        val bodyY = screenY + headerH + theme.dividerWidth
+        val bodyW = screenW - sidebarW - theme.dividerWidth
+        val bodyH = screenH - headerH - theme.dividerWidth
+        val body = BodyContainer(bodyX, bodyY, bodyW, bodyH, theme)
 
         headerDividerX = screenX
         headerDividerY = screenY + headerH
@@ -66,6 +66,7 @@ open class ModalScreen(
         sidebarDividerY = sidebarY
 
         populateDummyContent(body)
+        populateDummySidebar(sidebar)
 
         addRenderableWidget(header)
         addRenderableWidget(sidebar)
@@ -74,11 +75,23 @@ open class ModalScreen(
 
     override fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         // Fill parent panel bg
-        context.fill(screenX, screenY, screenX + screenW, screenY + screenH, bgRGB)
+        context.fill(screenX, screenY, screenX + screenW, screenY + screenH, theme.darkColor.rgb)
 
         // Render container dividers
-        context.fill(sidebarDividerX, sidebarDividerY, sidebarDividerX + DEFAULT_GUI_DIVIDER_WIDTH, screenY + screenH, lightRGB)
-        context.fill(headerDividerX, headerDividerY, headerDividerX + screenW, headerDividerY + DEFAULT_GUI_DIVIDER_WIDTH, lightRGB)
+        context.fill(
+            sidebarDividerX,
+            sidebarDividerY,
+            sidebarDividerX + theme.dividerWidth,
+            screenY + screenH,
+            theme.lightColor.rgb
+        )
+        context.fill(
+            headerDividerX,
+            headerDividerY,
+            headerDividerX + screenW,
+            headerDividerY + theme.dividerWidth,
+            theme.lightColor.rgb
+        )
 
         super.render(context, mouseX, mouseY, delta)
     }
@@ -86,10 +99,24 @@ open class ModalScreen(
     override fun renderBlurredBackground(delta: Float) {}
     override fun renderMenuBackground(context: GuiGraphics) {}
 
+    private fun populateDummySidebar(sidebar: SidebarContainer) {
+        val navItems = listOf(
+            "Dashboard" to SimpleIcons.HAMMER,
+            "Settings" to SimpleIcons.HAMMER, // Replace with GEAR if available
+            "Inventory" to SimpleIcons.HAMMER, // Replace with CHEST if available
+            "History" to SimpleIcons.HAMMER,
+            "Support" to SimpleIcons.HAMMER
+        )
+
+        navItems.forEachIndexed { i, (label, icon) ->
+            sidebar.addNavButton(label, icon) {}
+        }
+    }
+
     private fun populateDummyContent(body: BodyContainer) {
         val itemHeight = 20
         val itemCount = 20
-        val padding = DEFAULT_GUI_PADDING
+        val padding = theme.paddingMD
 
         repeat(itemCount) { i ->
             val itemY = body.y + padding + i * (itemHeight + padding)
@@ -97,11 +124,13 @@ open class ModalScreen(
                 SidebarButton(
                     body.x + padding,
                     itemY,
-                    40,
-                    20,
+                    DEFAULT_GUI_SIDEBAR_WIDTH,
+                    DEFAULT_GUI_SIDEBAR_BUTTON_HEIGHT,
                     Component.literal("Item ${i + 1}"),
+
+                    SimpleIcons.HAMMER,
+                    theme,
                     onPress = {},
-                    SimpleIcons.HAMMER
                 )
             )
         }

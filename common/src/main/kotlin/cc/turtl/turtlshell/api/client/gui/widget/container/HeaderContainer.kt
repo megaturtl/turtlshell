@@ -1,9 +1,9 @@
 package cc.turtl.turtlshell.api.client.gui.widget.container
 
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_PADDING
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_TEXT_COLOR
-import cc.turtl.turtlshell.api.client.gui.widget.button.CloseButton
-import net.minecraft.client.Minecraft
+import cc.turtl.turtlshell.api.client.gui.GuiTheme
+import cc.turtl.turtlshell.api.client.gui.drawVerticallyCentredText
+import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
+import cc.turtl.turtlshell.api.client.gui.widget.button.IconButton
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.AbstractContainerWidget
 import net.minecraft.client.gui.components.Button
@@ -20,18 +20,25 @@ class HeaderContainer(
     headerW: Int,
     headerH: Int,
     title: Component,
+    val theme: GuiTheme,
     onClose: Button.OnPress,
 ) : AbstractContainerWidget(
     headerX,
     headerY, headerW, headerH, title
 ) {
 
-    private val font = Minecraft.getInstance().font
-
-    val btnSize = height - DEFAULT_GUI_PADDING * 2
-    val btnX = x + width - btnSize - DEFAULT_GUI_PADDING
-    val btnY = y + DEFAULT_GUI_PADDING
-    private val closeButton = CloseButton(btnX, btnY, btnSize, onClose)
+    val btnSize = (height - theme.paddingSM * 2)
+    val btnX = x + width - btnSize - theme.paddingSM
+    val btnY = y + theme.paddingSM
+    private val closeButton = IconButton(
+        btnX, btnY, btnSize,
+        theme.textColor.rgb,
+        theme.textColor.rgb,
+        theme.darkColor.rgb,
+        theme.medColor.rgb,
+        onClose,
+        SimpleIcons.CROSS
+    )
 
     override fun children(): List<GuiEventListener> = listOf(closeButton)
 
@@ -41,10 +48,9 @@ class HeaderContainer(
         mouseY: Int,
         partialTick: Float,
     ) {
-        val titleX = x + DEFAULT_GUI_PADDING + 2
-        val titleY = y + (height - font.lineHeight) / 2 + 2
 
-        guiGraphics.drawString(font, message, titleX, titleY, DEFAULT_GUI_TEXT_COLOR.rgb, false)
+        val titleX = x + theme.paddingMD
+        guiGraphics.drawVerticallyCentredText(theme.font, message, titleX, y, height, theme.textColor.rgb)
 
         closeButton.render(guiGraphics, mouseX, mouseY, partialTick)
     }

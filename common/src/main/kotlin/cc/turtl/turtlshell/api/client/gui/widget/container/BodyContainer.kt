@@ -1,5 +1,6 @@
 package cc.turtl.turtlshell.api.client.gui.widget.container
 
+import cc.turtl.turtlshell.api.client.gui.GuiTheme
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.client.gui.components.events.GuiEventListener
@@ -14,7 +15,8 @@ class BodyContainer(
     posY: Int,
     viewWidth: Int,
     viewHeight: Int,
-) : AbstractScrollableContainer(posX, posY, viewWidth, viewHeight) {
+    theme: GuiTheme,
+) : AbstractScrollableContainer(posX, posY, viewWidth, viewHeight, theme) {
 
     private val childWidgets: MutableList<GuiEventListener> = mutableListOf()
 

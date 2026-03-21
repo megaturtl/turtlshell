@@ -5,7 +5,6 @@ import cc.turtl.turtlshell.api.client.gui.texture.Icon
 import cc.turtl.turtlshell.api.client.gui.texture.IconSize
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
 import cc.turtl.turtlshell.api.client.gui.texture.renderSimpleIcon
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.narration.NarrationElementOutput
@@ -15,10 +14,11 @@ class SidebarButton(
     btnX: Int,
     btnY: Int,
     btnW: Int,
-    btnH: Int,
+    btnH: Int = (theme.font.lineHeight - 2) * 2,
     message: Component,
+    private val icon: Icon = SimpleIcons.MINUS,
+    private val theme: GuiTheme,
     onPress: OnPress,
-    private val icon: Icon? = null,
 ) : Button(
     btnX,
     btnY,
@@ -29,52 +29,32 @@ class SidebarButton(
     DEFAULT_NARRATION
 ) {
 
-    private val font = Minecraft.getInstance().font
-
-    companion object {
-        private val BG_COLOR_IDLE = DEFAULT_GUI_DARK_COLOR
-        private val BG_COLOR_HOVER = DEFAULT_GUI_MED_COLOR
-        private val BG_COLOR_ACTIVE = DEFAULT_GUI_ACCENT_COLOR
-        private val ICON_COLOR = DEFAULT_GUI_TEXT_COLOR
-    }
-
     override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
-        val bgColor = if (isHovered) BG_COLOR_HOVER.rgb else BG_COLOR_IDLE.rgb
+        val bgColor = if (isHovered) theme.lightColor.rgb else theme.darkColor.rgb
 
         context.fill(x, y, x + width, y + height, bgColor)
 
-        icon?.let {
-            context.renderSimpleIcon(
-                it,
-                x + DEFAULT_GUI_PADDING * 2, // left aligned
-                y + (height - IconSize.MD.px) / 2, // vertically centred
-                IconSize.MD,
-                color = ICON_COLOR,
-            )
-        }
-
-        val fontScale = 0.75F
-        val scaledX = (x + DEFAULT_GUI_PADDING * 4 + IconSize.MD.px + DEFAULT_GUI_PADDING) / fontScale
-        val scaledY = (y + (height + 2 - font.lineHeight * fontScale) / 2) / fontScale
-
-        context.pose().pushPose()
-        context.pose().scale(fontScale, fontScale, 1F)
-        context.drawString(
-            font,
-            message,
-            scaledX.toInt(),
-            scaledY.toInt(),
-            DEFAULT_GUI_TEXT_COLOR.rgb,
-            false
+        val iconX = x + theme.paddingMD // left aligned
+        val iconY = y + (height - IconSize.MD.px) / 2 // vertically centred
+        context.renderSimpleIcon(
+            icon,
+            iconX,
+            iconY,
+            IconSize.MD,
+            rgb = theme.textColor.rgb,
         )
-        context.pose().popPose()
 
+        val labelX = iconX + IconSize.MD.px + theme.paddingMD
+        context.drawVerticallyCentredText(theme.font, message, labelX, y, height, theme.textColor.rgb, 0.75F)
+
+        val chevronX = x + width - IconSize.SM.px - theme.paddingMD // right aligned
+        val chevronY = y + (height - IconSize.SM.px) / 2 // vertically centred
         context.renderSimpleIcon(
             SimpleIcons.CHEVRON_RIGHT,
-            x + width - IconSize.SM.px - DEFAULT_GUI_PADDING * 2, // right aligned
-            y + (height - IconSize.SM.px) / 2, // vertically centred
+            chevronX, // right aligned
+            chevronY, // vertically centred
             IconSize.SM,
-            color = ICON_COLOR,
+            rgb = theme.textColor.rgb,
         )
     }
 
