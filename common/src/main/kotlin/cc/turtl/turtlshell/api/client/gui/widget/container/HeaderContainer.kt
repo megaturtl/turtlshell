@@ -35,7 +35,7 @@ class HeaderContainer(
         theme.textColor.rgb,
         theme.textColor.rgb,
         theme.darkColor.rgb,
-        theme.medColor.rgb,
+        theme.lightColor.rgb,
         onClose,
         SimpleIcons.CROSS
     )
