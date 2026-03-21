@@ -21,8 +21,10 @@
   "ts.command.info.commit.label": "Commit",
   "ts.command.info.branch.label": "Branch",
 
+  "ts.command.openscreen.desc": "Open a screen instance for debugging.",
+  "ts.command.openscreen.unknown": "The requested screen could not be found!",
+
   "ts.key.open_config": "Open Config",
 
-  "ts.gui.base.title": "TurtlShell GUI",
-  "ts.gui.tab.build": "Build"
+  "ts.gui.examplescreen.title": "TurtlShell Screen"
 }

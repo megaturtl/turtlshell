@@ -25,8 +25,16 @@ enum class IconSize(val px: Int) {
 object SimpleIcons {
     val CROSS = Icon(iconResource("simple_icon_cross.png"))
     val HAMMER = Icon(iconResource("simple_icon_hammer.png"))
+    val HOME = Icon(iconResource("simple_icon_home.png"))
+    val BLOCKED = Icon(iconResource("simple_icon_block.png"))
+    val EYE = Icon(iconResource("simple_icon_eye.png"))
+    val SEARCH = Icon(iconResource("simple_icon_search.png"))
+    val HEART = Icon(iconResource("simple_icon_heart.png"))
+    val STAR = Icon(iconResource("simple_icon_star.png"))
+    val GEAR = Icon(iconResource("simple_icon_gear.png"))
 
     val MINUS = Icon(iconResource("simple_icon_minus.png"))
+    val PLUS = Icon(iconResource("simple_icon_plus.png"))
 
     val CHEVRON_RIGHT = Icon(iconResource("simple_icon_chevron_right.png"))
 }

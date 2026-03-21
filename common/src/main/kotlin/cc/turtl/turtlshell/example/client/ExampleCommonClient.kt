@@ -15,7 +15,7 @@ object ExampleCommonClient {
 
         CommandRegistry.registerGroup(
             aliases = listOf(BuildDetails.MOD_ID, "ts"),
-            commands = listOf(GuiCommand)
+            commands = listOf(OpenScreenCommand)
         )
 
         ExampleConfigClient.init()
