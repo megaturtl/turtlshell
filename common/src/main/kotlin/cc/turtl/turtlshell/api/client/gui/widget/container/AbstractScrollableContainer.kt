@@ -32,7 +32,7 @@ abstract class AbstractScrollableContainer(
     /** The usable width available for content, excluding the scrollbar gutter. */
     val usableW: Int get() = viewportW - SCROLLBAR_GUTTER
 
-    private var scrollOffset: Int = 0
+    protected var scrollOffset: Int = 0
     private var totalContentH: Int = 0
 
     private var isDraggingScrollbar = false
@@ -93,7 +93,7 @@ abstract class AbstractScrollableContainer(
             }
             return true
         }
-        return super.mouseClicked(mouseX, mouseY, button)
+        return super.mouseClicked(mouseX, mouseY + scrollOffset, button)
     }
 
     override fun mouseReleased(mouseX: Double, mouseY: Double, button: Int): Boolean {

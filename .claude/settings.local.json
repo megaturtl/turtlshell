@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(./gradlew :common:compileKotlin 2>&1 | tail -40)",
+      "Bash(./gradlew :common:compileKotlin 2>&1 | tail -10)"
+    ]
+  }
+}

@@ -5,11 +5,17 @@ import cc.turtl.turtlshell.api.client.gui.FONT_HEIGHT_PX
 import cc.turtl.turtlshell.api.client.gui.screen.AbstractModalScreen
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
 import cc.turtl.turtlshell.api.client.gui.widget.button.SidebarButton
+import cc.turtl.turtlshell.api.client.gui.widget.button.TextButton
 import cc.turtl.turtlshell.api.client.gui.widget.container.BodyContainer
+import cc.turtl.turtlshell.api.client.gui.widget.element.LabelElement
+import cc.turtl.turtlshell.api.client.gui.widget.option.TextInputOption
+import cc.turtl.turtlshell.api.client.gui.widget.option.ToggleOption
+import cc.turtl.turtlshell.example.client.config.ExampleConfigClient
 import net.minecraft.network.chat.Component
 
 class ExampleScreen : AbstractModalScreen(
-    Component.translatable("ts.gui.examplescreen.title")) {
+    Component.translatable("ts.gui.examplescreen.title"),
+    debug = ExampleConfigClient.get().general.debug) {
 
     override fun initContainers() {
         addPage("Home", SimpleIcons.HOME) {
@@ -28,7 +34,12 @@ class ExampleScreen : AbstractModalScreen(
             populateDummyContent(label = "Blocklist", itemCount = 8)
         }
         addPage("Settings", SimpleIcons.GEAR) {
-            populateDummyContent(label = "Settings", itemCount = 6)
+            addBlock(LabelElement(Component.literal("Display"), theme))
+            addBlock(ToggleOption(Component.literal("Show HUD"), true, theme) { })
+            addBlock(TextInputOption(Component.literal("Name"), "Steve", theme) { })
+            addBlock(LabelElement(Component.literal("Actions"), theme))
+            addInline(TextButton(Component.literal("Reset"), theme) { })
+            addInline(TextButton(Component.literal("Apply"), theme) { })
         }
     }
 
@@ -41,15 +52,12 @@ class ExampleScreen : AbstractModalScreen(
         itemCount: Int,
     ) {
         val itemHeight = FONT_HEIGHT_PX + theme.paddingLG * 2
-        val padding = theme.paddingMD
 
         repeat(itemCount) { i ->
-            val itemY = y + padding + i * (itemHeight + padding)
-            addContent(
+            addBlock(
                 SidebarButton(
                     Component.literal("$label item ${i + 1}"),
-                    x + padding,
-                    itemY,
+                    x, y,
                     DEFAULT_GUI_SIDEBAR_WIDTH,
                     itemHeight,
                     SimpleIcons.MINUS,
@@ -58,7 +66,5 @@ class ExampleScreen : AbstractModalScreen(
                 )
             )
         }
-
-        updateContentHeight(itemCount * (itemHeight + padding) + padding)
     }
 }

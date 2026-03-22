@@ -20,6 +20,7 @@ abstract class AbstractModalScreen(
     protected val screenW: Int = DEFAULT_GUI_MODAL_WIDTH,
     protected val screenH: Int = DEFAULT_GUI_MODAL_HEIGHT,
     protected val theme: GuiTheme = GuiTheme.DEFAULT,
+    val debug: Boolean = false,
 ) : Screen(title) {
 
     protected var screenX: Int = 0
@@ -32,7 +33,8 @@ abstract class AbstractModalScreen(
 
     protected lateinit var header: HeaderContainer
     protected lateinit var sidebar: SidebarContainer
-    protected lateinit var body: BodyContainer
+    lateinit var body: BodyContainer
+        protected set
 
     override fun init() {
         super.init()
@@ -61,7 +63,7 @@ abstract class AbstractModalScreen(
 
         header  = HeaderContainer(headerX, headerY, headerW, headerH, title, theme) { onClose() }
         sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH, theme)
-        body    = BodyContainer(bodyX, bodyY, bodyW, bodyH, theme)
+        body    = BodyContainer(bodyX, bodyY, bodyW, bodyH, theme, debug)
 
         addRenderableWidget(header)
         addRenderableWidget(sidebar)
@@ -97,11 +99,13 @@ abstract class AbstractModalScreen(
         sidebar.addNavButton(label, icon) {
             body.clearContent()
             body.init()
+            body.finaliseLayout()
         }
 
         if (isFirstPage) {
             sidebar.setActiveButton(0)
             body.init()
+            body.finaliseLayout()
         }
     }
 
