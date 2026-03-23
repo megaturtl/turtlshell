@@ -57,9 +57,9 @@ class TextEntryElement(
 
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
         syncEditBox()
-        guiGraphics.fill(x, y, x + width, y + height, theme.medColor.rgb)
+        guiGraphics.fill(x, y, x + width, y + height, theme.inputBg.rgb)
         guiGraphics.renderOutline(x, y, width, height,
-            if (editBox.isFocused) theme.lightColor.rgb else theme.medColor.rgb)
+            if (editBox.isFocused) theme.inputBorderFocused.rgb else theme.inputBg.rgb)
 
         editBox.render(guiGraphics, mouseX, mouseY, 0f)
     }

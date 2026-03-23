@@ -21,9 +21,9 @@ class ToggleElement(
         val hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
 
         val bgColor = when {
-            value -> theme.accentColor.rgb
-            hovered -> theme.lightColor.rgb
-            else -> theme.medColor.rgb
+            value -> theme.toggleActiveBg.rgb
+            hovered -> theme.buttonHoverBg.rgb
+            else -> theme.buttonBg.rgb
         }
         guiGraphics.fill(x, y, x + width, y + height, bgColor)
 
@@ -32,7 +32,7 @@ class ToggleElement(
             x = x + theme.paddingSM,
             y = y,
             containerH = height,
-            rgb = if (value) theme.darkColor.rgb else theme.textColor.rgb,
+            rgb = if (value) theme.toggleActiveText.rgb else theme.textColor.rgb,
             maxCharacterWidth = width - theme.paddingSM * 2,
         )
     }

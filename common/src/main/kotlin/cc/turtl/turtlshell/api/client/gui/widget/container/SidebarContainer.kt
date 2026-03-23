@@ -25,13 +25,13 @@ class SidebarContainer(
     /**
      * Adds a nav button and automatically calculates its vertical position.
      */
-    fun addNavButton(label: String, icon: Icon, onPress: () -> Unit) {
+    fun addNavButton(label: Component, icon: Icon, onPress: () -> Unit) {
         val index = navButtons.size
         val buttonH = FONT_HEIGHT_PX + theme.paddingLG * 2
         val buttonY = this.y + theme.paddingMD + (index * buttonH)
 
         val button = SidebarButton(
-            Component.literal(label),
+            label,
             this.x,
             buttonY,
             this.width,

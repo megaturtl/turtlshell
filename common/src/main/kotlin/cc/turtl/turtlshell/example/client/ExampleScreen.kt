@@ -13,38 +13,36 @@ class ExampleScreen : AbstractModalScreen(
 ) {
 
     override fun initContainers() {
-        addPage("Home", SimpleIcons.HOME) {
+        addPage(Component.literal("Home"), SimpleIcons.HOME) {
         }
-        addPage("Preview", SimpleIcons.EYE) {
+        addPage(Component.literal("Preview"), SimpleIcons.EYE) {
         }
-        addPage("Search", SimpleIcons.SEARCH) {
+        addPage(Component.literal("Search"), SimpleIcons.SEARCH) {
         }
-        addPage("Build", SimpleIcons.HAMMER) {
+        addPage(Component.literal("Build"), SimpleIcons.HAMMER) {
         }
-        addPage("Blocklist", SimpleIcons.BLOCKED) {
+        addPage(Component.literal("Blocklist"), SimpleIcons.BLOCKED) {
         }
-        addPage("Settings", SimpleIcons.GEAR) {
-            body.addBlock(TextElement(Component.literal("This is the title"), theme))
-            body.addBlock(TextElement(Component.literal("This is on the second row"), theme))
-            body.addInline(TextElement(Component.literal("Start of row"), theme))
-            body.addInline(TextElement(Component.literal("End of row"), theme))
-            body.addInline(
-                TextElement(
-                    Component.literal("This should wrap to a new row even though it's inline"),
-                    theme
-                )
-            )
-            body.addBlock(TextElement(Component.literal("This text is biggg"), theme, 2f))
-            body.addBlock(TextElement(Component.literal("This text is small"), theme, 0.5f))
-            body.addInline(TextElement(Component.literal("Really big"), theme, 3f))
-            body.addInline(TextElement(Component.literal("Regular inline"), theme))
-            body.addInline(ButtonElement(Component.literal("Button"), theme))
-            body.addInline(ToggleElement(Component.literal("Toggle"), theme))
-            body.addInline(TextEntryElement(theme))
-            body.addBlock(ImageElement(
+        addPage(Component.literal("Settings"), SimpleIcons.GEAR) {
+            addBlock(TextElement(Component.literal("This is the title"), theme))
+            addBlock(TextElement(Component.literal("This is on the second row"), theme))
+            addInline(TextElement(Component.literal("Start of row"), theme))
+            addInline(TextElement(Component.literal("End of row"), theme))
+            addInline(TextElement(
+                Component.literal("This should wrap to a new row even though it's inline"),
+                theme
+            ))
+            addBlock(TextElement(Component.literal("This text is biggg"), theme, 2f))
+            addBlock(TextElement(Component.literal("This text is small"), theme, 0.5f))
+            addInline(TextElement(Component.literal("Really big"), theme, 3f))
+            addInline(TextElement(Component.literal("Regular inline"), theme))
+            addInline(ButtonElement(Component.literal("Button"), theme))
+            addInline(ToggleElement(Component.literal("Toggle"), theme))
+            addInline(TextEntryElement(theme))
+            addBlock(ImageElement(
                 ResourceLocation.fromNamespaceAndPath("turtlshell", "icon.png"),
                 128, 128, 32, justify = Justify.CENTER))
-            body.addBlock(ImageElement(
+            addBlock(ImageElement(
                 ResourceLocation.fromNamespaceAndPath("turtlshell", "icon.png"),
                 128, 128, 32, justify = Justify.RIGHT))
         }

@@ -34,12 +34,12 @@ class SidebarButton(
 
     override fun renderWidget(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         val bgRGB = when {
-            buttonActive -> theme.accentColor.rgb
-            isHovered -> theme.lightColor.rgb
-            else -> theme.darkColor.rgb
+            buttonActive -> theme.navActiveBg.rgb
+            isHovered -> theme.navHoverBg.rgb
+            else -> theme.navBg.rgb
         }
 
-        val textRGB = if (buttonActive) theme.darkColor.rgb else theme.textColor.rgb
+        val textRGB = if (buttonActive) theme.navActiveText.rgb else theme.textColor.rgb
 
         context.fill(x, y, x + width, y + height, bgRGB)
 

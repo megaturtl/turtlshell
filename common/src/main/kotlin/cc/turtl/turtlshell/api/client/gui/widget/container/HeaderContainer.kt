@@ -37,8 +37,8 @@ class HeaderContainer(
         btnX, btnY, btnSize,
         theme.textColor.rgb,
         theme.textColor.rgb,
-        theme.darkColor.rgb,
-        theme.lightColor.rgb,
+        theme.screenBg.rgb,
+        theme.buttonHoverBg.rgb,
         onClose,
         SimpleIcons.CROSS
     )

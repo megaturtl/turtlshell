@@ -141,7 +141,7 @@ abstract class AbstractScrollableContainer(
         val handleH = scrollbarHandleH()
         val handleY = scrollbarHandleY()
 
-        guiGraphics.fill(barX, y, barX + SCROLLBAR_WIDTH, y + viewportH, theme.lightColor.rgb)
-        guiGraphics.fill(barX, handleY, barX + SCROLLBAR_WIDTH, handleY + handleH, theme.accentColor.rgb)
+        guiGraphics.fill(barX, y, barX + SCROLLBAR_WIDTH, y + viewportH, theme.scrollbarTrack.rgb)
+        guiGraphics.fill(barX, handleY, barX + SCROLLBAR_WIDTH, handleY + handleH, theme.scrollbarHandle.rgb)
     }
 }

@@ -14,6 +14,7 @@ import java.awt.Color
  * ```
  */
 data class GuiTheme(
+    // Palette
     val accentColor: Color = ColorLib.MINT,
     val lightColor: Color = ColorLib.LIGHT_SLATE,
     val medColor: Color = ColorLib.SLATE,
@@ -29,6 +30,27 @@ data class GuiTheme(
     val paddingMD: Int = 4,
     val paddingLG: Int = 8,
 ) {
+    // Semantic aliases - widgets reference these instead of raw palette names
+    val screenBg: Color get() = darkColor
+    val dividerColor: Color get() = lightColor
+
+    val navBg: Color get() = darkColor
+    val navHoverBg: Color get() = lightColor
+    val navActiveBg: Color get() = accentColor
+    val navActiveText: Color get() = darkColor
+
+    val buttonBg: Color get() = medColor
+    val buttonHoverBg: Color get() = lightColor
+
+    val toggleActiveBg: Color get() = accentColor
+    val toggleActiveText: Color get() = darkColor
+
+    val inputBg: Color get() = medColor
+    val inputBorderFocused: Color get() = lightColor
+
+    val scrollbarTrack: Color get() = lightColor
+    val scrollbarHandle: Color get() = accentColor
+
     companion object {
         val DEFAULT = GuiTheme()
     }

@@ -90,38 +90,38 @@ abstract class AbstractModalScreen(
      * }
      * ```
      */
-    protected fun addPage(label: String, icon: Icon, init: () -> Unit) {
+    protected fun addPage(label: Component, icon: Icon, init: BodyContainer.() -> Unit) {
         val isFirstPage = sidebar.buttonCount == 0
-
-        sidebar.addNavButton(label, icon) {
+        val load = {
             body.clearElements()
-            init()
+            body.init()
             body.positionElements()
         }
 
+        sidebar.addNavButton(label, icon, load)
+
         if (isFirstPage) {
             sidebar.setActiveButton(0)
-            init()
-            body.positionElements()
+            load()
         }
     }
 
     override fun render(context: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
-        context.fill(screenX, screenY, screenX + screenW, screenY + screenH, theme.darkColor.rgb)
+        context.fill(screenX, screenY, screenX + screenW, screenY + screenH, theme.screenBg.rgb)
 
         context.fill(
             sidebarDividerX,
             sidebarDividerY,
             sidebarDividerX + theme.dividerWidth,
             screenY + screenH,
-            theme.lightColor.rgb
+            theme.dividerColor.rgb
         )
         context.fill(
             headerDividerX,
             headerDividerY,
             headerDividerX + screenW,
             headerDividerY + theme.dividerWidth,
-            theme.lightColor.rgb
+            theme.dividerColor.rgb
         )
 
         super.render(context, mouseX, mouseY, delta)

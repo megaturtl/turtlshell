@@ -16,7 +16,7 @@ class ButtonElement(
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
         val hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
 
-        val bgColor = if (hovered) theme.lightColor.rgb else theme.medColor.rgb
+        val bgColor = if (hovered) theme.buttonHoverBg.rgb else theme.buttonBg.rgb
         val textColor = theme.textColor.rgb
         guiGraphics.fill(x, y, x + width, y + height, bgColor)
 
