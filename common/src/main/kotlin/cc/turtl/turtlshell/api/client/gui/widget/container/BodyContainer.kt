@@ -2,6 +2,7 @@ package cc.turtl.turtlshell.api.client.gui.widget.container
 
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
 import cc.turtl.turtlshell.api.client.gui.widget.element.BodyElement
+import cc.turtl.turtlshell.api.client.gui.widget.element.Justify
 import cc.turtl.turtlshell.api.core.format.ColorLib
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.events.GuiEventListener
@@ -18,7 +19,7 @@ class BodyContainer(
 
     val paddedX: Int = x + theme.paddingMD
     val paddedY: Int = y + theme.paddingMD
-    val paddedW: Int = usableW - theme.paddingMD * 2
+    val paddedW: Int get() = usableW - theme.paddingMD * 2 - if (isScrollable) theme.paddingMD else 0 // lazy so it updated based on scroll visibility
 
     val minElementH: Int = 7 + theme.paddingSM * 2
 
@@ -61,9 +62,13 @@ class BodyContainer(
         for ((element, inline) in elementEntries) {
             if (!inline) {
                 commitRow()
-                element.x = paddedX
+                element.x = when (element.justify) {
+                    Justify.LEFT -> paddedX
+                    Justify.CENTER -> paddedX + (paddedW - element.minW) / 2
+                    Justify.RIGHT -> paddedX + paddedW - element.minW
+                }
                 element.y = curY
-                element.width = paddedW
+                element.width = element.minW
                 element.height = maxOf(element.height, minElementH)
                 curY += element.height + theme.paddingMD
             } else {

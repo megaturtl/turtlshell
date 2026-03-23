@@ -23,14 +23,13 @@ abstract class AbstractScrollableContainer(
 
     companion object {
         const val SCROLLBAR_WIDTH = 4
-        const val SCROLLBAR_GUTTER = SCROLLBAR_WIDTH + 2
 
         private const val SCROLL_AMOUNT = 10
         private const val HANDLE_MIN_HEIGHT = 8
     }
 
     /** The usable width available for content, excluding the scrollbar gutter. */
-    val usableW: Int get() = viewportW - SCROLLBAR_GUTTER
+    val usableW: Int get() = viewportW - SCROLLBAR_WIDTH
 
     private var scrollOffset: Int = 0
     private var totalContentH: Int = 0
@@ -41,7 +40,7 @@ abstract class AbstractScrollableContainer(
     private val maxScroll: Int
         get() = maxOf(0, totalContentH - viewportH)
 
-    private val isScrollable: Boolean
+    val isScrollable: Boolean
         get() = maxScroll > 0
 
     /** Call this whenever the total height of the content changes. */

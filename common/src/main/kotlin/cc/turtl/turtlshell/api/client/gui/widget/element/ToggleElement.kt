@@ -41,7 +41,7 @@ class ToggleElement(
             maxCharacterWidth = width - theme.paddingSM * 2,
         )
     }
-    
+
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
         if (button == 0 && isMouseOver(mouseX, mouseY)) {
             Minecraft.getInstance().soundManager.play(

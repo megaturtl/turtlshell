@@ -3,7 +3,7 @@ package cc.turtl.turtlshell.api.client.gui.widget.element
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.events.GuiEventListener
 
-abstract class BodyElement(val minW: Int, val minH: Int, val inlineable: Boolean) {
+abstract class BodyElement(val minW: Int, val minH: Int, val inlineable: Boolean, val justify: Justify = Justify.LEFT) {
     var x = 0
     var y = 0
     var width = minW
@@ -22,3 +22,5 @@ abstract class InteractiveBodyElement(minW: Int, minH: Int, inlineable: Boolean)
     override fun isMouseOver(mouseX: Double, mouseY: Double): Boolean =
         mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height
 }
+
+enum class Justify { LEFT, CENTER, RIGHT }
