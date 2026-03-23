@@ -4,7 +4,6 @@ import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_MODAL_HEIGHT
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_MODAL_WIDTH
 import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_SIDEBAR_WIDTH
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
-import cc.turtl.turtlshell.api.client.gui.FONT_HEIGHT_PX
 import cc.turtl.turtlshell.api.client.gui.texture.Icon
 import cc.turtl.turtlshell.api.client.gui.texture.IconSize
 import cc.turtl.turtlshell.api.client.gui.widget.container.BodyContainer
@@ -13,13 +12,13 @@ import cc.turtl.turtlshell.api.client.gui.widget.container.SidebarContainer
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
-import kotlin.math.max
 
 abstract class AbstractModalScreen(
     title: Component,
     protected val screenW: Int = DEFAULT_GUI_MODAL_WIDTH,
     protected val screenH: Int = DEFAULT_GUI_MODAL_HEIGHT,
     protected val theme: GuiTheme = GuiTheme.DEFAULT,
+    val debug: Boolean = false,
 ) : Screen(title) {
 
     protected var screenX: Int = 0
@@ -59,9 +58,9 @@ abstract class AbstractModalScreen(
         sidebarDividerX = screenX + sidebarW
         sidebarDividerY = sidebarY
 
-        header  = HeaderContainer(headerX, headerY, headerW, headerH, title, theme) { onClose() }
+        header = HeaderContainer(headerX, headerY, headerW, headerH, title, theme) { onClose() }
         sidebar = SidebarContainer(sidebarX, sidebarY, sidebarW, sidebarH, theme)
-        body    = BodyContainer(bodyX, bodyY, bodyW, bodyH, theme)
+        body = BodyContainer(bodyX, bodyY, bodyW, bodyH, theme, debug)
 
         addRenderableWidget(header)
         addRenderableWidget(sidebar)
@@ -91,17 +90,19 @@ abstract class AbstractModalScreen(
      * }
      * ```
      */
-    protected fun addPage(label: String, icon: Icon, init: BodyContainer.() -> Unit) {
+    protected fun addPage(label: String, icon: Icon, init: () -> Unit) {
         val isFirstPage = sidebar.buttonCount == 0
 
         sidebar.addNavButton(label, icon) {
-            body.clearContent()
-            body.init()
+            body.clearElements()
+            init()
+            body.positionElements()
         }
 
         if (isFirstPage) {
             sidebar.setActiveButton(0)
-            body.init()
+            init()
+            body.positionElements()
         }
     }
 

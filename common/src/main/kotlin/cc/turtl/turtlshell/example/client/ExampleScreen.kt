@@ -1,64 +1,42 @@
 package cc.turtl.turtlshell.example.client
 
-import cc.turtl.turtlshell.api.client.gui.DEFAULT_GUI_SIDEBAR_WIDTH
-import cc.turtl.turtlshell.api.client.gui.FONT_HEIGHT_PX
 import cc.turtl.turtlshell.api.client.gui.screen.AbstractModalScreen
 import cc.turtl.turtlshell.api.client.gui.texture.SimpleIcons
-import cc.turtl.turtlshell.api.client.gui.widget.button.SidebarButton
-import cc.turtl.turtlshell.api.client.gui.widget.container.BodyContainer
+import cc.turtl.turtlshell.api.client.gui.widget.element.ButtonElement
+import cc.turtl.turtlshell.api.client.gui.widget.element.TextElement
+import cc.turtl.turtlshell.api.client.gui.widget.element.TextEntryElement
+import cc.turtl.turtlshell.api.client.gui.widget.element.ToggleElement
+import cc.turtl.turtlshell.example.client.config.ExampleConfigClient
 import net.minecraft.network.chat.Component
 
 class ExampleScreen : AbstractModalScreen(
-    Component.translatable("ts.gui.examplescreen.title")) {
+    Component.translatable("ts.gui.examplescreen.title"),
+    debug = ExampleConfigClient.get().general.debug) {
 
     override fun initContainers() {
         addPage("Home", SimpleIcons.HOME) {
-            populateDummyContent(label = "Home", itemCount = 5)
         }
         addPage("Preview", SimpleIcons.EYE) {
-            populateDummyContent(label = "Preview", itemCount = 10)
         }
         addPage("Search", SimpleIcons.SEARCH) {
-            populateDummyContent(label = "Search", itemCount = 3)
         }
         addPage("Build", SimpleIcons.HAMMER) {
-            populateDummyContent(label = "Build", itemCount = 20)
         }
         addPage("Blocklist", SimpleIcons.BLOCKED) {
-            populateDummyContent(label = "Blocklist", itemCount = 8)
         }
         addPage("Settings", SimpleIcons.GEAR) {
-            populateDummyContent(label = "Settings", itemCount = 6)
+            body.addBlock(TextElement(Component.literal("This is the title"), theme))
+            body.addBlock(TextElement(Component.literal("This is on the second row"), theme))
+            body.addInline(TextElement(Component.literal("Start of row"), theme))
+            body.addInline(TextElement(Component.literal("End of row"), theme))
+            body.addInline(TextElement(Component.literal("This should wrap to a new row even though it's inline"), theme))
+            body.addBlock(TextElement(Component.literal("This text is biggg"), theme, 2f))
+            body.addBlock(TextElement(Component.literal("This text is small"), theme, 0.5f))
+            body.addInline(TextElement(Component.literal("Really big"), theme, 3f))
+            body.addInline(TextElement(Component.literal("Regular inline"), theme))
+            body.addInline(ButtonElement(Component.literal("Button"), theme))
+            body.addInline(ToggleElement(Component.literal("Toggle"), theme))
+            body.addInline(TextEntryElement(theme))
         }
-    }
-
-    /**
-     * Helper to fill the body with a number of placeholder items.
-     * Called inside the addPage lambda, so 'this' is the BodyContainer.
-     */
-    private fun BodyContainer.populateDummyContent(
-        label: String,
-        itemCount: Int,
-    ) {
-        val itemHeight = FONT_HEIGHT_PX + theme.paddingLG * 2
-        val padding = theme.paddingMD
-
-        repeat(itemCount) { i ->
-            val itemY = y + padding + i * (itemHeight + padding)
-            addContent(
-                SidebarButton(
-                    Component.literal("$label item ${i + 1}"),
-                    x + padding,
-                    itemY,
-                    DEFAULT_GUI_SIDEBAR_WIDTH,
-                    itemHeight,
-                    SimpleIcons.MINUS,
-                    theme,
-                    onPress = {},
-                )
-            )
-        }
-
-        updateContentHeight(itemCount * (itemHeight + padding) + padding)
     }
 }

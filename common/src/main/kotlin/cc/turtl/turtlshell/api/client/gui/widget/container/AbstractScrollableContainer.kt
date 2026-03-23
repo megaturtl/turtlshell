@@ -93,7 +93,7 @@ abstract class AbstractScrollableContainer(
             }
             return true
         }
-        return super.mouseClicked(mouseX, mouseY, button)
+        return super.mouseClicked(mouseX, mouseY + scrollOffset, button)
     }
 
     override fun mouseReleased(mouseX: Double, mouseY: Double, button: Int): Boolean {
@@ -101,7 +101,7 @@ abstract class AbstractScrollableContainer(
             isDraggingScrollbar = false
             return true
         }
-        return super.mouseReleased(mouseX, mouseY, button)
+        return super.mouseReleased(mouseX, mouseY + scrollOffset, button)
     }
 
     override fun mouseDragged(mouseX: Double, mouseY: Double, button: Int, dragX: Double, dragY: Double): Boolean {
@@ -111,7 +111,7 @@ abstract class AbstractScrollableContainer(
             clampScroll()
             return true
         }
-        return super.mouseDragged(mouseX, mouseY, button, dragX, dragY)
+        return super.mouseDragged(mouseX, mouseY + scrollOffset, button, dragX, dragY)
     }
 
     /**

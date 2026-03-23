@@ -19,6 +19,7 @@ data class GuiTheme(
     val medColor: Color = ColorLib.SLATE,
     val darkColor: Color = ColorLib.DARK_SLATE,
     val textColor: Color = ColorLib.WHITE,
+    val subtleTextColor: Color = ColorLib.LIGHT_GRAY,
 
     val dividerWidth: Int = 1,
 
