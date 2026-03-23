@@ -45,8 +45,8 @@ class TextEntryElement(
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
         if (!isMouseOver(mouseX, mouseY)) return false
-        // forward click to editBox using its own y so it registers correctly
-        return editBox.mouseClicked(mouseX, editBox.y.toDouble(), button)
+        editBox.isFocused = true
+        return true
     }
 
     override fun keyPressed(keyCode: Int, scanCode: Int, modifiers: Int): Boolean =

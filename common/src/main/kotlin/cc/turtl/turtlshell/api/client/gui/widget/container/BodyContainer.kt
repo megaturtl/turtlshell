@@ -62,13 +62,13 @@ class BodyContainer(
         for ((element, inline) in elementEntries) {
             if (!inline) {
                 commitRow()
+                element.width = element.minW
                 element.x = when (element.justify) {
                     Justify.LEFT -> paddedX
-                    Justify.CENTER -> paddedX + (paddedW - element.minW) / 2
-                    Justify.RIGHT -> paddedX + paddedW - element.minW
+                    Justify.CENTER -> paddedX + (paddedW - element.width) / 2
+                    Justify.RIGHT -> paddedX + paddedW - element.width
                 }
                 element.y = curY
-                element.width = element.minW
                 element.height = maxOf(element.height, minElementH)
                 curY += element.height + theme.paddingMD
             } else {

@@ -2,11 +2,8 @@ package cc.turtl.turtlshell.api.client.gui.widget.element
 
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
 import cc.turtl.turtlshell.api.client.gui.drawVerticallyCentredText
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.network.chat.Component
-import net.minecraft.sounds.SoundEvents
 
 class ToggleElement(
     val label: Component,
@@ -20,10 +17,8 @@ class ToggleElement(
     var value: Boolean = initialValue
         private set
 
-    private var hovered = false
-
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
+        val hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
 
         val bgColor = when {
             value -> theme.accentColor.rgb
@@ -44,9 +39,7 @@ class ToggleElement(
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
         if (button == 0 && isMouseOver(mouseX, mouseY)) {
-            Minecraft.getInstance().soundManager.play(
-                SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0f)
-            )
+            playClickSound()
             value = !value
             onToggle(value)
             return true

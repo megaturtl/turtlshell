@@ -39,11 +39,7 @@ class SidebarButton(
             else -> theme.darkColor.rgb
         }
 
-        val textRGB = when {
-            buttonActive -> theme.darkColor.rgb
-            isHovered -> theme.textColor.rgb
-            else -> theme.textColor.rgb
-        }
+        val textRGB = if (buttonActive) theme.darkColor.rgb else theme.textColor.rgb
 
         context.fill(x, y, x + width, y + height, bgRGB)
 

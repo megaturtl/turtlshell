@@ -38,8 +38,8 @@ fun GuiGraphics.drawText(
 
     if (pMouseX == null || pMouseY == null) return false
 
-    val hovered = pMouseX in drawX..(drawX + fontRenderer.width(text))
-            && pMouseY in y..(y + FONT_HEIGHT_PX)
+    val hovered = pMouseX in drawX until (drawX + fontRenderer.width(text))
+            && pMouseY in y until (y + FONT_HEIGHT_PX)
     if (hovered) renderComponentHoverEffect(fontRenderer, text.style, pMouseX, pMouseY)
     return hovered
 }
@@ -101,5 +101,5 @@ fun GuiGraphics.drawVerticallyCentredText(
     val scaledLineHeight = ((FONT_HEIGHT_PX + shadowOffset) * scale).toInt()
     val centredY = y + (containerH - scaledLineHeight) / 2
 
-     drawScaledText(text, x, centredY, scale, rgb, shadow, maxCharacterWidth = maxCharacterWidth)
+    drawScaledText(text, x, centredY, scale, rgb, shadow, maxCharacterWidth = maxCharacterWidth)
 }

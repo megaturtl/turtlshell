@@ -2,11 +2,8 @@ package cc.turtl.turtlshell.api.client.gui.widget.element
 
 import cc.turtl.turtlshell.api.client.gui.GuiTheme
 import cc.turtl.turtlshell.api.client.gui.drawVerticallyCentredText
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.network.chat.Component
-import net.minecraft.sounds.SoundEvents
 
 class ButtonElement(
     val label: Component,
@@ -16,10 +13,8 @@ class ButtonElement(
     val onClick: () -> Unit = {},
 ) : InteractiveBodyElement(minW, MIN_H, inlineable) {
 
-    private var hovered = false
-
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
+        val hovered = isMouseOver(mouseX.toDouble(), mouseY.toDouble())
 
         val bgColor = if (hovered) theme.lightColor.rgb else theme.medColor.rgb
         val textColor = theme.textColor.rgb
@@ -37,9 +32,7 @@ class ButtonElement(
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
         if (button == 0 && isMouseOver(mouseX, mouseY)) {
-            Minecraft.getInstance().soundManager.play(
-                SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0f)
-            )
+            playClickSound()
             onClick()
             return true
         }
