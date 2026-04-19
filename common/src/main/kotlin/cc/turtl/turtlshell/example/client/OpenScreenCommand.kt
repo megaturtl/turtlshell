@@ -1,19 +1,19 @@
 package cc.turtl.turtlshell.example.client
 
-import cc.turtl.turtlshell.api.core.command.TurtlShellCommand
+import cc.turtl.turtlshell.api.client.TurtlShellClientCommand
 import cc.turtl.turtlshell.api.core.format.MessagePatterns
+import cc.turtl.turtlshell.api.core.util.sendCommandFeedback
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
-import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.SharedSuggestionProvider
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 
-object OpenScreenCommand : TurtlShellCommand {
+object OpenScreenCommand : TurtlShellClientCommand {
     override val name = "openscreen"
     override val description: MutableComponent = Component.translatable("ts.command.openscreen.desc")
 
@@ -26,30 +26,24 @@ object OpenScreenCommand : TurtlShellCommand {
         }
     }
 
-    override fun build(): LiteralArgumentBuilder<CommandSourceStack> =
-        LiteralArgumentBuilder.literal<CommandSourceStack>(name)
-            .then(RequiredArgumentBuilder.argument<CommandSourceStack, String>("screen", StringArgumentType.string())
-                .suggests { _, builder -> SharedSuggestionProvider.suggest(Screens.allNames, builder) }
-                .executes { context ->
-                    val player = context.source.player
-                        ?: run {
-                            context.source.sendSystemMessage(MessagePatterns.error("ts.command.not_player"))
-                            return@executes 0
+    override fun build(): LiteralArgumentBuilder<*> =
+        LiteralArgumentBuilder.literal<Any>(name)
+            .then(
+                RequiredArgumentBuilder.argument<Any, String>("screen", StringArgumentType.string())
+                    .suggests { _, builder -> SharedSuggestionProvider.suggest(Screens.allNames, builder) }
+                    .executes { context ->
+                        val screenArg = StringArgumentType.getString(context, "screen")
+                        val screen = Screens.find(screenArg)
+
+                        if (screen == null) {
+                            context.sendCommandFeedback(MessagePatterns.warning("ts.command.openscreen.unknown"))
+                        } else {
+                            Minecraft.getInstance().tell {
+                                Minecraft.getInstance().setScreen(screen.factory())
+                            }
                         }
 
-                    val screenArg = StringArgumentType.getString(context, "screen")
-                    val screen = Screens.find(screenArg)
-
-                    if (screen == null) {
-                        player.sendSystemMessage(MessagePatterns.warning("ts.command.openscreen.unknown"))
-                    } else {
-                        // Schedule onto the render thread, where setScreen is safe to call.
-                        Minecraft.getInstance().execute {
-                            Minecraft.getInstance().setScreen(screen.factory())
-                        }
+                        Command.SINGLE_SUCCESS
                     }
-
-                    Command.SINGLE_SUCCESS
-                }
             )
 }

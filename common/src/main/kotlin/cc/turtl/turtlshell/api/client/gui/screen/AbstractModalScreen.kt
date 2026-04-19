@@ -90,11 +90,11 @@ abstract class AbstractModalScreen(
      * }
      * ```
      */
-    protected fun addPage(label: Component, icon: Icon, init: BodyContainer.() -> Unit) {
+    protected fun addPage(label: Component, icon: Icon, addElements: BodyContainer.() -> Unit) {
         val isFirstPage = sidebar.buttonCount == 0
         val load = {
             body.clearElements()
-            body.init()
+            body.apply(addElements)
             body.positionElements()
         }
 

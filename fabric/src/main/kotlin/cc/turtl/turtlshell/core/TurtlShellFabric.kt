@@ -16,7 +16,7 @@ object TurtlShellFabric : ModInitializer {
 
     private fun registerCommands() {
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
-            CommandGroupRegistrar.registerAll(dispatcher)
+            CommandGroupRegistrar.registerServerCommands(dispatcher)
         }
     }
 }

@@ -4,6 +4,7 @@ import cc.turtl.turtlshell.BuildDetails
 import cc.turtl.turtlshell.api.client.keybind.KeybindRegistry
 import cc.turtl.turtlshell.example.client.ExampleCommonClient
 import cc.turtl.turtlshell.example.client.config.ExampleConfigClient
+import cc.turtl.turtlshell.impl.CommandGroupRegistrar
 import net.minecraft.client.gui.screens.Screen
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
@@ -11,6 +12,7 @@ import net.neoforged.fml.ModContainer
 import net.neoforged.fml.ModList
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
+import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 
@@ -37,5 +39,10 @@ object TurtlShellNeoForgeClient {
     @SubscribeEvent
     private fun registerKeybinds(e: RegisterKeyMappingsEvent) {
         KeybindRegistry.all().forEach(e::register)
+    }
+
+    @SubscribeEvent
+    private fun registerClientCommands(e: RegisterClientCommandsEvent) {
+        CommandGroupRegistrar.registerClientCommands(e.dispatcher)
     }
 }

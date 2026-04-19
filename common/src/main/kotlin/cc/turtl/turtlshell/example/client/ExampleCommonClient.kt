@@ -13,8 +13,8 @@ object ExampleCommonClient {
             keybinds = ExampleKeybinds.ALL
         )
 
-        CommandRegistry.registerGroup(
-            aliases = listOf(BuildDetails.MOD_ID, "ts"),
+        CommandRegistry.registerClientGroup(
+            aliases = listOf("${BuildDetails.MOD_ID}client", "tsc"),
             commands = listOf(OpenScreenCommand)
         )
 

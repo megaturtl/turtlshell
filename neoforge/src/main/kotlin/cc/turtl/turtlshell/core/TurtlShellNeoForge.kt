@@ -18,8 +18,8 @@ object TurtlShellNeoForge {
     }
 
     @SubscribeEvent
-    private fun registerCommands(e: RegisterCommandsEvent) {
-        CommandGroupRegistrar.registerAll(e.dispatcher)
+    private fun registerServerCommands(e: RegisterCommandsEvent) {
+        CommandGroupRegistrar.registerServerCommands(e.dispatcher)
     }
 
 }

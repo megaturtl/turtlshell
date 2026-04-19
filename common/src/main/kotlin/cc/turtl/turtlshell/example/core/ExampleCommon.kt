@@ -6,7 +6,7 @@ import cc.turtl.turtlshell.api.core.command.CommandRegistry
 object ExampleCommon {
     fun init() {
 
-        CommandRegistry.registerGroup(
+        CommandRegistry.registerServerGroup(
             aliases = listOf(BuildDetails.MOD_ID, "ts"),
             commands = listOf(InfoCommand)
         )
