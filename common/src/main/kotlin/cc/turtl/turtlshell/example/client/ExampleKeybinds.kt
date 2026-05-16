@@ -9,7 +9,7 @@ object ExampleKeybinds {
     val OPEN_CONFIG = KeyMapping(
         "ts.key.open_config",
         InputConstants.Type.KEYSYM,
-        GLFW.GLFW_KEY_SEMICOLON,
+        GLFW.GLFW_KEY_F25,
         BuildDetails.MOD_DISPLAY_NAME
     )
 
