@@ -11,16 +11,16 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.ModList
 import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.fml.common.Mod
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 
 
-@EventBusSubscriber
-@Mod(value = BuildDetails.MOD_ID, dist = [Dist.CLIENT])
+// No @Mod here, only @EventBusSubscriber with Dist.CLIENT so KFF still wires its
+// @SubscribeEvent methods to the bus.
+@EventBusSubscriber(value = [Dist.CLIENT])
 object TurtlShellNeoForgeClient {
-    init {
+    fun init() {
         ExampleCommonClient.init()
         registerConfigScreen()
     }
@@ -30,7 +30,7 @@ object TurtlShellNeoForgeClient {
             .ifPresent { c: ModContainer ->
                 c.registerExtensionPoint(
                     IConfigScreenFactory::class.java,
-                    IConfigScreenFactory { container: ModContainer, parent: Screen ->
+                    IConfigScreenFactory { _: ModContainer, parent: Screen ->
                         ExampleConfigClient.createScreen(parent)
                     })
             }
