@@ -13,12 +13,12 @@ class KeyWidget(
     controller: KeyController,
     screen: YACLScreen,
     dim: Dimension<Int>
-) : dev.isxander.yacl3.gui.controllers.ControllerWidget<KeyController>(controller, screen, dim) {
+) : ControllerWidget<KeyController>(controller, screen, dim) {
 
     private var listening = false
 
     override fun getValueText(): Component =
-        if (listening) Component.translatable("turtlshell.keybind.press_key_prompt")
+        if (listening) Component.translatable("ts.config.keybind.press_key_prompt")
         else control.option().pendingValue().displayName
 
     override fun render(graphics: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {

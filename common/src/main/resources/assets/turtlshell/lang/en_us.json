@@ -4,7 +4,9 @@
   "ts.config.general.mod_disabled": "Disable Mod",
   "ts.config.general.mod_disabled.desc": "Completely disable all TurtlShell features",
   "ts.config.general.open_config_keybind": "Open Config Keybind",
-  "ts.config.general.open_config_keybind.desc": "Default Key: ; (Semi Colon)",
+  "ts.config.general.open_config_keybind.desc": "Default Key: F25",
+  "ts.config.general.debug_mode": "Debug Mode",
+  "ts.config.general.debug_mode.desc": "Enables advanced debugging features",
   "ts.config.keybind.press_key_prompt": "> Press a key <",
 
 
